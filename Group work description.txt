@@ -1,0 +1,25 @@
+
+-5/29/2019
+    Notes:
+
+    home page - 
+        - alphanumical order
+        - title: Parchment
+        - Theme: Tannish color (background), perhaps purple???
+
+    Group members-
+
+    Jason
+        - style.css
+
+    Alec 
+        - js editing
+        - Page examples
+    Ben
+        - Barebone of the server
+        - clean/add to the html
+        - commenting handlebars on html
+
+    Ross
+        - html
+        - Modal for adding page (creating a page)
