@@ -5,7 +5,7 @@ var accept = document.getElementById('acceptbutton');
 var cancel = document.getElementById('cancelbutton');
 var scrollname = document.getElementById('newscrollname');
 var modal = document.getElementById('modal');
-var backdrop = document.getElementById('modalbackdrop');
+var backdrop = document.getElementById('backdrop');
 
 //display modal
 create.addEventListener('click',function(event){
