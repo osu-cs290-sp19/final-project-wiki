@@ -2,7 +2,7 @@
 -5/29/2019
     Notes:
 
-    home page - 
+    home page -
         - alphanumical order
         - title: Parchment
         - Theme: Tannish color (background), perhaps purple???
@@ -12,7 +12,7 @@
     Jason
         - style.css
 
-    Alec 
+    Alec
         - js editing
         - Page examples
     Ben
@@ -23,3 +23,4 @@
     Ross
         - html
         - Modal for adding page (creating a page)
+        - adding search functionality to main page with js

@@ -3,80 +3,91 @@
 
 <head>
 
-    <meta charset='utf-8'>
-    <title>Parchment</title>
+  <meta charset='utf-8'>
+  <title>Parchment</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href='style.css' media='screen'>
-    <script src='index.js' charset='utf-8' defer></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <link rel='stylesheet' href='style.css' media='screen'>
+  <script src='index.js' charset='utf-8' defer></script>
 
 </head>
 
 <body>
 
     <header class='title'>
-        <a href=''><img src='quill.png' alt='Quill' height='24px'></a></li>
-        <a href=''><h1 class='title'>Parchment</h1></a></li>
+      <a href=''><img src='quill.png' alt='Quill' height='24px'></a></li>
+      <a href=''><h1 class='title'>Parchment</h1></a></li>
     </header>
 
     <nav class='navbar'>
     <!-- ^^this^^ should be a fixed element, i propose color #50006d -->
-        <ul class='navlist'>
-            <h2>
-                <li><a href=''>Category 1</a></li>
-                <li><a href=''>Category 2</a></li>
-                <li><a href=''>Category 3</a></li>
-                <li><a href=''>Category 4</a></li>
-                <li><a href=''>Category 5</a></li>
-            </h2>
+      <ul class='navlist'>
+        <h2>
+          <li><a href=''>Category 1</a></li>
+          <li><a href=''>Category 2</a></li>
+          <li><a href=''>Category 3</a></li>
+          <li><a href=''>Category 4</a></li>
+          <li><a href=''>Category 5</a></li>
+        </h2>
 
-            <li class='searchbar'>
-            <input type='text' placeholder='search...'>
-            <button type='button' class='searchbutton'>?</button>
-            </li>
-        </ul>
+        <li class='searchbar'>
+          <input type='text' placeholder='search...'>
+          <button type='button' id='searchbutton'>?</button>
+        </li>
+      </ul>
     </nav>
 
     <main class='pagecontent'>
-        <h2>Welcome to [wiki]!</h2>
-        <h3>[wiki] is an opensource, unregulated, fake wiki about [topic] for you to create, explore, and share.</h3>
+      <h2>Welcome to Parchment!</h2>
+      <h3>Parchment is an opensource, unregulated, fake wiki all about berries, for you to create, explore, and share.</h3>
 
-        <h2> Create a Scroll <h2>
-        <button type='button' class='createbutton'>+</button>
+      <h2> Create a Scroll <h2>
+      <button type='button' id='createbutton'>+</button>
 
-        <h3 class='featuredlist'>
-            Featured Scrolls:
-            <ul>
-                <li><a href=''>[featuredpage]</li></a>
-                <li><a href=''>[featuredpage]</li></a>
-                <li><a href=''>[featuredpage]</li></a>
-                <li><a href=''>[featuredpage]</li></a>
-                <li><a href=''>[featuredpage]</li></a>
-            </ul>
-        </h3>
-
-        <h3 class='recentlist'>
-            Recent Scrolls:
-            <ul>
-                <li><a href=''>[recentpage]</li></a>
-                <li><a href=''>[recentpage]</li></a>
-                <li><a href=''>[recentpage]</li></a>
-                <li><a href=''>[recentpage]</li></a>
-                <li><a href=''>[recentpage]</li></a>
-            </ul>
-        </h3>
-
-        <h2 class='alllist'>All Scrolls A-Z:</h2>
-
+      <h3 class='featuredlist'>
+        Featured Scrolls:
         <ul>
-            <li><a href=''>[page]</li></a>
-            <li><a href=''>[page]</li></a>
-            <li><a href=''>[page]</li></a>
-            <li><a href=''>[page]</li></a>
-            <li><a href=''>[page]</li></a>
+          <li><a href=''>[featuredpage]</li></a>
+          <li><a href=''>[featuredpage]</li></a>
+          <li><a href=''>[featuredpage]</li></a>
+          <li><a href=''>[featuredpage]</li></a>
+          <li><a href=''>[featuredpage]</li></a>
         </ul>
+      </h3>
+
+      <h3 class='recentlist'>
+        Recent Scrolls:
+        <ul>
+          <li><a href=''>[recentpage]</li></a>
+          <li><a href=''>[recentpage]</li></a>
+          <li><a href=''>[recentpage]</li></a>
+          <li><a href=''>[recentpage]</li></a>
+          <li><a href=''>[recentpage]</li></a>
+        </ul>
+      </h3>
+
+      <h2 class='alllist'>All Scrolls A-Z:</h2>
+
+      <ul>
+        <li><a href=''>[page]</li></a>
+        <li><a href=''>[page]</li></a>
+        <li><a href=''>[page]</li></a>
+        <li><a href=''>[page]</li></a>
+        <li><a href=''>[page]</li></a>
+      </ul>
 
     </main>
+
+    <div id='modalbackdrop' class='hidden'></div>
+    <div id='modal' class='hidden'>
+      <h2>Create a Scroll</h2>
+      <h3>Scroll Name:</h3>
+      <input type='text' placeholder='name...' id='newscrollname'>
+      <div id='modal-footer'>
+        <button type='button' id='cancelbutton'>Cancel</button>
+        <button type='button' id='acceptbutton'>Accept</button>
+      </div>
+    </div>
 
 </body>
 
