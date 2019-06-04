@@ -1,0 +1,4 @@
+run: "npm install" on terminal to install all the packages
+run: "npm start" to start the server
+
+to pre-build: "npm run build"

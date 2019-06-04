@@ -1,0 +1,18 @@
+{
+    "page1": {
+        "title": "someTitle",
+        "photos": [
+            {
+                "caption": "someCaption",
+                "url": "picture url"
+            },
+            {
+                "caption2": "someCaption2",
+                "url2": "picture url2"
+            }
+        ],
+        "body": {
+            "wiki-body": "Body of the wiki page"
+        }
+    }
+}
