@@ -1,18 +1,17 @@
 {
-    "page1": {
-        "title": "someTitle",
-        "photos": [
-            {
-                "caption": "someCaption",
-                "url": "picture url"
+    "blueberry": {
+        "title": "blueberries",
+        "summary": "some summary here",
+        "image": "images/blueberry.png",
+        "sectionData": [
+            { 
+                "name": "Uses",
+                "text": "Blueberry uses"
             },
             {
-                "caption2": "someCaption2",
-                "url2": "picture url2"
+                "name": "test2",
+                "text": "test 2 stuff"
             }
-        ],
-        "body": {
-            "wiki-body": "Body of the wiki page"
-        }
+        ]
     }
 }

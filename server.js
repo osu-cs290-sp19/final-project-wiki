@@ -1,3 +1,4 @@
+
 // express server
 var path = require('path');
 var express = require('express');
@@ -14,7 +15,24 @@ var logger = require('./logger');
 app.use(logger);
 
 // database
-var database = require('./wikiDatabase');
+var wikiDatabase = require('./wikiDatabase');
+
+/* 
+--- data format ---
+It needs to be a key format for URL access
+{
+    "title": {
+        "summary": "",
+        "image": "",
+        "sectionData": {
+            "name": "",
+            "text": "",
+        }
+    }
+}
+
+
+*/
 
 //engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
@@ -25,14 +43,17 @@ app.set('view engine', 'handlebars');
 app.get('/', function (req, res, next) {
     // insert code here
     // res.send("hello world!");
-    // res.status(200).render('wikiPage', wikiobject);
+    res.status(200).render('homePage');
 });
 
 app.get('/wiki/:title', function (req, res, next) {
-    var wikiObject = {
-        title
+    var title = req.params.title.toLowerCase();
+    if (wikiDatabase[title]) {
+        res.status(200).render('wikiPage', wikiDatabase[title]);
     }
-    // res.status(200).render('wikiPage', wikiObject);
+    else {
+        next();
+    }
 })
 
 /*
@@ -57,14 +78,14 @@ app.get("*", function (req, res, next) {
     res.status(404).render('404Page');
   });
 
-  // app.listen(port, function (err) {
-  //   if (err) {
-  //     throw err;
-  //   }
-  //   console.log("== Server listening on port", port);
+  app.listen(port, function (err) {
+    if (err) {
+      throw err;
+    }
+    console.log("== Server listening on port", port);
 });
 
 
-app.listen(port, function () {
-    console.log("== Server started and is listening on port", port);
-});
+// app.listen(port, function () {
+//     console.log("== Server started and is listening on port", port);
+// });

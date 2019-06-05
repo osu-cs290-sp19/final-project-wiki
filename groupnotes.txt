@@ -24,3 +24,5 @@
         - html
         - Modal for adding page (creating a page)
         - adding search functionality to main page with js
+
+There are two dynamic UI's, the main page with all the wikis and the individual wiki page.

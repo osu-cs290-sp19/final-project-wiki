@@ -1,0 +1,32 @@
+
+
+    <main class='content'>
+		<button type='button' id='create-button'>Create a Scroll</button>
+
+        <h3>
+        	WELCOME TO THE QUILL
+        </h3>
+
+        <p class="">
+			The Quill is an open source and freely available wiki where anyone can
+			make pages of any kind they want!
+		</p>
+
+        <p class='featuredlist'>
+            Featured Scrolls:
+            <ul>
+                {{#each featuredData}} 
+                    {{> featuredScrolls}}
+                {{/each}}
+            </ul>
+        </p>
+
+        <p class='recentlist'>
+            Recent Scrolls:
+            <ul>
+                {{#each recentData}} 
+                     {{> recentScrolls}}
+                {{/each}}
+            </ul>
+        </p>
+    </main>

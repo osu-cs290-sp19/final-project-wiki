@@ -1,0 +1,40 @@
+<!--
+
+Formmatting:
+
+Title
+    header1
+    image
+    Section container
+        section
+            sectionName
+            input new section
+            section text
+            inout new section
+
+-->
+    <main>
+
+      <div>
+        <h1 id ='nameOfPage'>
+          {{title}}
+        </h1>
+        <p id = 'textInSummary'>
+          {{summary}}
+        </p>
+      </div>
+
+      <div>
+        <img src="{{image}}" alt="Growing tomato">
+      </div>
+
+
+      <div id = 'sectionsContainer'>
+            {{#each sectionData}} <!-- input section name and section text -->
+                {{> section}}
+            {{/each}}
+      </div>
+
+    </main>
+
+    <button type="button" id="edit-page-button"><p>Edit</p></button>
