@@ -14,7 +14,7 @@
     <nav class='navbar'>
     	<!-- ^^this^^ should be a fixed element, I propose color #50006d -->
         <ul class='navlist'>
-			<li class='navitem'><a href=''><img class='navitem' src='quill.png' alt='logo' height='24px'></a></li>
+			<li class='navitem'><a href=''><img class='quill' src='quill.png' alt='logo' height='24px'></a></li>
 			<li class='navitem title'><a href=''>QUILL</a></li>
             <li class='navitem'><a href=''>ONE</a></li>
             <li class='navitem'><a href=''>TWO</a></li>
@@ -31,10 +31,7 @@
     </nav>
 
     <main class='content'>
-		<div class="create-scroll">
-			Create a Scroll
-			<button type='button' id='createbutton'>+</button>
-		</div>
+		<button type='button' id='create-button'>Create a Scroll</button>
 
         <h3>
         	WELCOME TO THE QUILL
@@ -68,16 +65,17 @@
         </p>
     </main>
 
-    <div id='backdrop' class='hidden'></div>
-    <div id='modal' class='hidden'>
-        <h2>Create a Scroll</h2>
-        <h3>Scroll Name:</h3>
-        <input type='text' placeholder='name...' id='newscrollname'>
-				<div id='modal-footer'>
-					<button type='button' id='cancelbutton'>Cancel</button>
-					<button type='button' id='acceptbutton'>Accept</button>
-				</div>
+    <div id='backdrop' class='hidden'>
+	    <div id='modal' class='hidden'>
+	        <h2>Create a Scroll</h2>
+	        <h3>Scroll TItle:</h3>
+	        <input type='text' placeholder='name...' id='newscrollname'>
+			<div id='modal-footer'>
+				<button type='button' id='cancel-button'>Cancel</button>
+				<button type='button' id='accept-button'>Accept</button>
+			</div>
 		</div>
+	</div>
 
 </body>
 

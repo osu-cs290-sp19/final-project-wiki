@@ -4,7 +4,7 @@ var express = require('express');
 var exphbs = require('express-handlebars');
 
 var app = express();
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 // static
 app.use(express.static('public'));
@@ -35,19 +35,19 @@ app.get('/wiki/:title', function (req, res, next) {
     // res.status(200).render('wikiPage', wikiObject);
 })
 
-/* 
+/*
 app.post('/photos', function (req, res, next) {
     //insert code here
 })
 */
 
-/* 
+/*
 app.put('/photos', function (req, res, next) {
     //insert code here
 })
 */
 
-/* 
+/*
 app.delete('/photos', function (req, res, next) {
     //insert code here
 })
@@ -56,15 +56,15 @@ app.delete('/photos', function (req, res, next) {
 app.get("*", function (req, res, next) {
     res.status(404).render('404Page');
   });
-  
-  app.listen(port, function (err) {
-    if (err) {
-      throw err;
-    }
-    console.log("== Server listening on port", port);
+
+  // app.listen(port, function (err) {
+  //   if (err) {
+  //     throw err;
+  //   }
+  //   console.log("== Server listening on port", port);
 });
 
 
-app.listen(3000, function () {
-    console.long("== Server started and is listening on port 3000");
+app.listen(port, function () {
+    console.log("== Server started and is listening on port", port);
 });

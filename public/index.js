@@ -11,9 +11,9 @@ function insertWikiPage(Title, Body, image) {
   wikiContainer.insertAdjacentHTML('beforeend', wikiHTML);
 }
 
-var create = document.getElementById('createbutton');
-var accept = document.getElementById('acceptbutton');
-var cancel = document.getElementById('cancelbutton');
+var create = document.getElementById('create-button');
+var accept = document.getElementById('accept-button');
+var cancel = document.getElementById('cancel-button');
 var scrollname = document.getElementById('newscrollname');
 var modal = document.getElementById('modal');
 var backdrop = document.getElementById('backdrop');
