@@ -89,7 +89,7 @@ app.post('/wiki/:title/addWiki',
             }
             else {
                 res.status(400).send("Wiki page must have a title or not exists!");
-        
+
             }
         }
     }
