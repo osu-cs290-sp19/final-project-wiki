@@ -1,0 +1,25 @@
+    <main>
+
+      <div>
+        <h1 id ='nameOfPage'>
+          {{title}}
+        </h1>
+        <p id = 'textInSummary'>
+            Add text Summary
+        </p>
+      </div>
+
+      <div>
+        <img src="{{image}}" alt="Growing tomato">
+      </div>
+
+
+      <div id = 'sectionsContainer'>
+            {{#each sectionData}} <!-- input section name and section text -->
+                {{> section}}
+            {{/each}}
+      </div>
+
+    </main>
+
+    <button type="button" id="edit-page-button"><p>Edit</p></button>

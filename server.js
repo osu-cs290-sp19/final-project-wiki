@@ -46,6 +46,12 @@ app.get('/', function (req, res, next) {
     res.status(200).render('homePage');
 });
 
+app.get('/test', function (req, res, next) {
+    // insert code here
+    // res.send("hello world!");
+    res.status(200).render('homePage');
+});
+
 app.get('/wiki/:title', function (req, res, next) {
     var title = req.params.title.toLowerCase();
     if (wikiDatabase[title]) {

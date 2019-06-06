@@ -1,15 +1,16 @@
 //index.js
 
-function insertWikiPage(Title, Body, image) {
-  var wikiContext = {
-    title: "Cats",
-    image: "http://placekitten.com/320/320/",
-    body: "A very cute kitty."
-  };
+// WARNING: EDIT THE index.js IN THE PUBLIC FOLDER!
 
-  var wikiHTML = Handlebars.templates.photoCard(photoCardContext);
+function insertWikiPage(Title) {
+  var wikiContext = {
+    title: Title
+  };
+  var wikiHTML = Handlebars.templates.photoCard(wikiContext);
+  var wikiContainer = document.querySelector('#nameOfPage');
   wikiContainer.insertAdjacentHTML('beforeend', wikiHTML);
 }
+
 
 var create = document.getElementById('createbutton');
 var accept = document.getElementById('acceptbutton');
