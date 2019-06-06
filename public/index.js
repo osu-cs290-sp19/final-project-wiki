@@ -4,12 +4,11 @@ if(document.URL.length <= 25){
     var wikiContext = {
       title: Title
     }
-    var wikiHTML = Handlebars.templates.wiki(wiki\
-      Context);
+    var wikiHTML = Handlebars.templates.wiki(wikiContext);
     var wikiContainer = document.querySelector('#nameOfPage');
 
-    var wikiRecentContainer = document.querySelector('.recent-list');
-    var wikiTitleContainer = document.querySelector('#name-of-page');
+    var wikiRecentContainer = document.querySelector('.recentlist');
+    var wikiTitleContainer = document.querySelector('#nameOfPage');
 
 
     wikiContainer.insertAdjacentHTML('beforeend', wikiHTML);
@@ -20,7 +19,7 @@ if(document.URL.length <= 25){
   var create = document.getElementById('create-button');
   var accept = document.getElementById('accept-button');
   var cancel = document.getElementById('cancel-button');
-  var scrollname = document.getElementById('new-scroll-name');
+  var scrollname = document.getElementById('newscrollname');
   var modal = document.getElementById('modal');
   var backdrop = document.getElementById('backdrop');
 
@@ -45,14 +44,10 @@ if(document.URL.length <= 25){
     //redirect to 'edit' page for this scroll
   });
 
-<<<<<<< HEAD
 
 }
 else{
 
-=======
-//else{
->>>>>>> a1c3d64e81cb559d1c2cac75ff08c125ed082bfd
   //edit page code
   var editButton = document.getElementById('edit-page-button');
   var acceptButton = document.getElementById('accept-edit-button');
@@ -63,7 +58,6 @@ else{
     var nameBoxes = document.getElementsByClassName('section-name');
     var inputTextBoxes = document.getElementsByClassName('new-section-text');
     var textBoxes = document.getElementsByClassName('section-text');
-<<<<<<< HEAD
 
     var inputPageName = document.getElementById('new-page-title');
     var pageName = document.getElementById('name-of-page');
@@ -71,8 +65,6 @@ else{
     var pageSummary = document.getElementById('text-in-summary');
     var inputImage = document.getElementById('new-page-image');
     var image = document.getElementById('page-image');
-=======
->>>>>>> a1c3d64e81cb559d1c2cac75ff08c125ed082bfd
 
     var numberOfBoxes = inputNameBoxes.length;
     var numberOfTexts = inputTextBoxes.length;
@@ -115,7 +107,6 @@ else{
     var nameBoxes = document.getElementsByClassName('section-name');
     var inputTextBoxes = document.getElementsByClassName('new-section-text');
     var textBoxes = document.getElementsByClassName('section-text');
-<<<<<<< HEAD
 
     var inputPageName = document.getElementById('new-page-title');
     var pageName = document.getElementById('name-of-page');
@@ -123,8 +114,6 @@ else{
     var pageSummary = document.getElementById('text-in-summary');
     var inputImage = document.getElementById('new-page-image');
     var image = document.getElementById('page-image');
-=======
->>>>>>> a1c3d64e81cb559d1c2cac75ff08c125ed082bfd
 
     var numberOfBoxes = inputNameBoxes.length;
     var numberOfTexts = inputTextBoxes.length;
@@ -167,7 +156,6 @@ else{
     var nameBoxes = document.getElementsByClassName('section-name');
     var inputTextBoxes = document.getElementsByClassName('new-section-text');
     var textBoxes = document.getElementsByClassName('section-text');
-<<<<<<< HEAD
 
     var inputPageName = document.getElementById('new-page-title');
     var pageName = document.getElementById('name-of-page');
@@ -175,8 +163,6 @@ else{
     var pageSummary = document.getElementById('text-in-summary');
     var inputImage = document.getElementById('new-page-image');
     var image = document.getElementById('page-image');
-=======
->>>>>>> a1c3d64e81cb559d1c2cac75ff08c125ed082bfd
 
     var numberOfBoxes = inputNameBoxes.length;
     var numberOfTexts = inputTextBoxes.length;
