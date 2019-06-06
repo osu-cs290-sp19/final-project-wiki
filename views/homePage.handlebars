@@ -15,7 +15,7 @@
         <p class='featuredlist'>
             Featured Scrolls:
             <ul>
-                {{#each featuredData}} 
+                {{#each featuredData}}
                     {{> featuredScrolls}}
                 {{/each}}
             </ul>
@@ -24,9 +24,21 @@
         <p class='recentlist'>
             Recent Scrolls:
             <ul>
-                {{#each recentData}} 
+                {{#each recentData}}
                      {{> recentScrolls}}
                 {{/each}}
             </ul>
         </p>
     </main>
+
+    <div id='backdrop' class='hidden'>
+      <div id='modal' class='hidden'>
+          <h2>Create a Scroll</h2>
+          <h3>Scroll TItle:</h3>
+          <input type='text' placeholder='name...' id='newscrollname'>
+      <div id='modal-footer'>
+        <button type='button' id='cancel-button'>Cancel</button>
+        <button type='button' id='accept-button'>Accept</button>
+      </div>
+    </div>
+  </div>
