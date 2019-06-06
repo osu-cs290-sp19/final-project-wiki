@@ -52,6 +52,7 @@ else{
   var editButton = document.getElementById('edit-page-button');
   var acceptButton = document.getElementById('accept-edit-button');
   var cancelButton = document.getElementById('cancel-edit-button');
+  var addButton = document.getElementById('add-section-button');
 
   editButton.onclick = function(){
     var inputNameBoxes = document.getElementsByClassName('new-section-name');
@@ -91,6 +92,7 @@ else{
 
     pageName.classList.add('hidden');
     pageSummary.classList.add('hidden');
+    image.classList.add('hidden');
 
     inputPageName.classList.remove('hidden');
     inputPageSummarry.classList.remove('hidden');
@@ -98,6 +100,7 @@ else{
 
     acceptButton.classList.remove('hidden');
     cancelButton.classList.remove('hidden');
+    addButton.classList.remove('hidden');
 
     editButton.classList.add('hidden');
   }
@@ -141,6 +144,7 @@ else{
 
     pageName.classList.remove('hidden');
     pageSummary.classList.remove('hidden');
+    image.classList.remove('hidden');
 
     inputPageName.classList.add('hidden');
     inputPageSummarry.classList.add('hidden');
@@ -149,6 +153,7 @@ else{
     editButton.classList.remove('hidden');
     acceptButton.classList.add('hidden');
     cancelButton.classList.add('hidden');
+    addButton.classList.add('hidden');
   }
 
   cancelButton.onclick = function(){
@@ -178,6 +183,7 @@ else{
 
     pageName.classList.remove('hidden');
     pageSummary.classList.remove('hidden');
+    image.classList.remove('hidden');
 
     inputPageName.classList.add('hidden');
     inputPageSummarry.classList.add('hidden');
@@ -186,5 +192,11 @@ else{
     editButton.classList.remove('hidden');
     acceptButton.classList.add('hidden');
     cancelButton.classList.add('hidden');
+    addButton.classList.add('hidden');
   }
+
+  addButton.onclick = function(){
+     alert("Did add section but in the function");
+     ///This is where you add another section to the list of sections for the specific pages
+ }
 }
