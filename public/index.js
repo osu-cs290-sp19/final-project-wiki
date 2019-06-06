@@ -1,5 +1,5 @@
 //index.js
-
+/*
 //if(document.URL.substring(document.URL.lastIndexOf('/'))){
   function insertWikiPage(Title) {
     var wikiContext = {
@@ -43,7 +43,9 @@
     //send signal to server to create a new empty scroll page
     //redirect to 'edit' page for this scroll
   });
-  
+
+
+  */
 //else{
   //edit page code
   var editButton = document.getElementById('edit-page-button');
@@ -56,8 +58,20 @@
     var inputTextBoxes = document.getElementsByClassName('newSectionText');
     var textBoxes = document.getElementsByClassName('sectionText');
 
+    var inputPageName = document.getElementById('newPageTitle');
+    var pageName = document.getElementById('nameOfPage');
+    var inputPageSummarry = document.getElementById('newPageSummary');
+    var pageSummary = document.getElementById('textInSummary');
+    var inputImage = document.getElementById('newPageImage');
+  //  var image = document.getElementById('edit-page-button');
+
     var numberOfBoxes = inputNameBoxes.length;
     var numberOfTexts = inputTextBoxes.length;
+
+    console.log(pageName.innerHTML);
+
+    inputPageName.value = pageName.innerHTML;
+    inputPageSummarry.value = pageSummary.innerHTML;
 
     for(var i = 0; i < numberOfBoxes; i++){
       inputNameBoxes[i].value = nameBoxes[i].innerHTML;
@@ -75,7 +89,11 @@
       textBoxes[i].classList.add('hidden');
     }
 
-    console.log(acceptButton);
+    pageName.classList.add('hidden');
+    pageSummary.classList.add('hidden');
+
+    inputPageName.classList.remove('hidden');
+    inputPageSummarry.classList.remove('hidden');
 
     acceptButton.classList.remove('hidden');
     cancelButton.classList.remove('hidden');
