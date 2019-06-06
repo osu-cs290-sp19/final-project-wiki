@@ -10,7 +10,9 @@ templates['wiki'] = template({"1":function(container,depth0,helpers,partials,dat
 
   return "    <main>\r\n\r\n      <div>\r\n        <h1 id ='nameOfPage'>\r\n          "
     + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
-    + "\r\n        </h1>\r\n        <p id = 'textInSummary'>\r\n            Add text Summary\r\n        </p>\r\n      </div>\r\n\r\n      <div>\r\n        <img src=\""
+    + "\r\n        </h1>\r\n        <p id = 'textInSummary'>\r\n          "
+    + alias4(((helper = (helper = helpers.summary || (depth0 != null ? depth0.summary : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"summary","hash":{},"data":data}) : helper)))
+    + "\r\n        </p>\r\n      </div>\r\n\r\n      <div>\r\n        <img src=\""
     + alias4(((helper = (helper = helpers.image || (depth0 != null ? depth0.image : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"image","hash":{},"data":data}) : helper)))
     + "\" alt=\"Growing tomato\">\r\n      </div>\r\n\r\n\r\n      <div id = 'sectionsContainer'>\r\n            "
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.sectionData : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")

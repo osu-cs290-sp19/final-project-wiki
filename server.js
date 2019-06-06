@@ -24,9 +24,10 @@ It needs to be a key format for URL access
     "title": {
         "summary": "",
         "image": "",
-        "sectionData": {
+        "sectionData": { [
             "name": "",
             "text": "",
+            ]
         }
     }
 }

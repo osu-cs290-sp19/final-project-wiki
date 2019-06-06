@@ -1,11 +1,11 @@
 //index.js
-/*
-//if(document.URL.substring(document.URL.lastIndexOf('/'))){
+if(document.URL.length <= 25){
   function insertWikiPage(Title) {
     var wikiContext = {
       title: Title
-    };
-    var wikiHTML = Handlebars.templates.wiki(wikiContext);
+    }
+    var wikiHTML = Handlebars.templates.wiki(wiki\
+      Context);
     var wikiContainer = document.querySelector('#nameOfPage');
 
     var wikiRecentContainer = document.querySelector('.recentlist');
@@ -28,6 +28,7 @@
   create.addEventListener('click',function(event){
     modal.classList.remove('hidden');
     backdrop.classList.remove('hidden');
+
   });
 
   cancel.addEventListener('click',function(event){
@@ -45,33 +46,33 @@
   });
 
 
-  */
-//else{
+}
+else{
+
   //edit page code
   var editButton = document.getElementById('edit-page-button');
   var acceptButton = document.getElementById('accept-edit-button');
   var cancelButton = document.getElementById('cancel-edit-button');
 
   editButton.onclick = function(){
-    var inputNameBoxes = document.getElementsByClassName('newSectionName');
-    var nameBoxes = document.getElementsByClassName('sectionName');
-    var inputTextBoxes = document.getElementsByClassName('newSectionText');
-    var textBoxes = document.getElementsByClassName('sectionText');
+    var inputNameBoxes = document.getElementsByClassName('new-section-name');
+    var nameBoxes = document.getElementsByClassName('section-name');
+    var inputTextBoxes = document.getElementsByClassName('new-section-text');
+    var textBoxes = document.getElementsByClassName('section-text');
 
-    var inputPageName = document.getElementById('newPageTitle');
-    var pageName = document.getElementById('nameOfPage');
-    var inputPageSummarry = document.getElementById('newPageSummary');
-    var pageSummary = document.getElementById('textInSummary');
-    var inputImage = document.getElementById('newPageImage');
-  //  var image = document.getElementById('edit-page-button');
+    var inputPageName = document.getElementById('new-page-title');
+    var pageName = document.getElementById('name-of-page');
+    var inputPageSummarry = document.getElementById('new-page-summary');
+    var pageSummary = document.getElementById('text-in-summary');
+    var inputImage = document.getElementById('new-page-image');
+    var image = document.getElementById('page-image');
 
     var numberOfBoxes = inputNameBoxes.length;
     var numberOfTexts = inputTextBoxes.length;
 
-    console.log(pageName.innerHTML);
-
     inputPageName.value = pageName.innerHTML;
     inputPageSummarry.value = pageSummary.innerHTML;
+    inputImage.value = image.src;
 
     for(var i = 0; i < numberOfBoxes; i++){
       inputNameBoxes[i].value = nameBoxes[i].innerHTML;
@@ -94,6 +95,7 @@
 
     inputPageName.classList.remove('hidden');
     inputPageSummarry.classList.remove('hidden');
+    inputImage.classList.remove('hidden');
 
     acceptButton.classList.remove('hidden');
     cancelButton.classList.remove('hidden');
@@ -102,13 +104,24 @@
   }
 
   acceptButton.onclick = function(){
-    var inputNameBoxes = document.getElementsByClassName('newSectionName');
-    var nameBoxes = document.getElementsByClassName('sectionName');
-    var inputTextBoxes = document.getElementsByClassName('newSectionText');
-    var textBoxes = document.getElementsByClassName('sectionText');
+    var inputNameBoxes = document.getElementsByClassName('new-section-name');
+    var nameBoxes = document.getElementsByClassName('section-name');
+    var inputTextBoxes = document.getElementsByClassName('new-section-text');
+    var textBoxes = document.getElementsByClassName('section-text');
+
+    var inputPageName = document.getElementById('new-page-title');
+    var pageName = document.getElementById('name-of-page');
+    var inputPageSummarry = document.getElementById('new-page-summary');
+    var pageSummary = document.getElementById('text-in-summary');
+    var inputImage = document.getElementById('new-page-image');
+    var image = document.getElementById('page-image');
 
     var numberOfBoxes = inputNameBoxes.length;
     var numberOfTexts = inputTextBoxes.length;
+
+    pageName.innerHTML = inputPageName.value;
+    pageSummary.innerHTML = inputPageSummarry.value;
+    image.src =inputImage.value;
 
     for(var i = 0; i < inputNameBoxes.length; i++){
       nameBoxes[i].innerHTML = inputNameBoxes[i].value;
@@ -127,16 +140,30 @@
       textBoxes[i].classList.remove('hidden');
     }
 
+    pageName.classList.remove('hidden');
+    pageSummary.classList.remove('hidden');
+
+    inputPageName.classList.add('hidden');
+    inputPageSummarry.classList.add('hidden');
+    inputImage.classList.add('hidden');
+
     editButton.classList.remove('hidden');
     acceptButton.classList.add('hidden');
     cancelButton.classList.add('hidden');
   }
 
   cancelButton.onclick = function(){
-    var inputNameBoxes = document.getElementsByClassName('newSectionName');
-    var nameBoxes = document.getElementsByClassName('sectionName');
-    var inputTextBoxes = document.getElementsByClassName('newSectionText');
-    var textBoxes = document.getElementsByClassName('sectionText');
+    var inputNameBoxes = document.getElementsByClassName('new-section-name');
+    var nameBoxes = document.getElementsByClassName('section-name');
+    var inputTextBoxes = document.getElementsByClassName('new-section-text');
+    var textBoxes = document.getElementsByClassName('section-text');
+
+    var inputPageName = document.getElementById('new-page-title');
+    var pageName = document.getElementById('name-of-page');
+    var inputPageSummarry = document.getElementById('new-page-summary');
+    var pageSummary = document.getElementById('text-in-summary');
+    var inputImage = document.getElementById('new-page-image');
+    var image = document.getElementById('page-image');
 
     var numberOfBoxes = inputNameBoxes.length;
     var numberOfTexts = inputTextBoxes.length;
@@ -150,8 +177,15 @@
     }
 
 
+    pageName.classList.remove('hidden');
+    pageSummary.classList.remove('hidden');
+
+    inputPageName.classList.add('hidden');
+    inputPageSummarry.classList.add('hidden');
+    inputImage.classList.add('hidden');
+
     editButton.classList.remove('hidden');
     acceptButton.classList.add('hidden');
     cancelButton.classList.add('hidden');
   }
-//}
+}
