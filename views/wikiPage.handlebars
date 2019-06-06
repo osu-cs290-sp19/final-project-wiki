@@ -16,6 +16,7 @@ Title
     <main>
 
       <div>
+<<<<<<< HEAD
         <h1 id ='name-of-page'>
           {{title}}
         </h1>
@@ -33,6 +34,25 @@ Title
 
 
       <div id = 'sections-container'>
+=======
+        <h1 id='name-of-page'>
+          {{title}}
+        </h1>
+        <input type='text' placeholder={{inputTitle}} id='new-page-title' class='hidden'>
+        <p id='text-in-summary'>
+          {{summary}}
+        </p>
+          <input type='text' placeholder={{inputSummary}} id='new-page-summary' class='hidden'>
+      </div>
+
+      <div>
+        <img src="{{image}}" alt="Growing tomato">
+          <input type='text' placeholder={{inputImage}} id='new-page-image' class='hidden'>
+      </div>
+
+
+      <div id='sections-container'>
+>>>>>>> a1c3d64e81cb559d1c2cac75ff08c125ed082bfd
             {{#each sectionData}} <!-- input section name and section text -->
                 {{> section}}
             {{/each}}
@@ -41,5 +61,5 @@ Title
     </main>
 
     <button type="button" id="edit-page-button"><p>Edit</p></button>
-    <button type="button" id="accept-edit-button" class = 'hidden'><p>Accept</p></button>
-    <button type="button" id="cancel-edit-button" class = 'hidden'><p>Cancel</p></button>
+    <button type="button" id="accept-edit-button" class='hidden'><p>Accept</p></button>
+    <button type="button" id="cancel-edit-button" class='hidden'><p>Cancel</p></button>
