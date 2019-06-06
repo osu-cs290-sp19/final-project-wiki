@@ -1,16 +1,23 @@
 {
     "blueberry": {
         "title": "BLUEBERRY",
+        "inputTitle":"",
         "summary": "Blueberries are perennial flowering plants with blue– or purple–colored berries. They are classified in the section Cyanococcus within the genus Vaccinium. Vaccinium also includes cranberries, bilberries, and huckleberries. Commercial \"blueberries\" – including both wild ('lowbush') and cultivated ('highbush') blueberries – are all native to North America. The highbush blueberry varieties were introduced into Europe during the 1930s. Blueberries are usually prostrate shrubs that can vary in size from 10 centimeters (3.9 in) to 4 meters (13 ft) in height. In commercial production of blueberries, the species with small, pea–size berries growing on low–level bushes are known as \"lowbush blueberries\" (synonymous with \"wild\"), while the species with larger berries growing on taller cultivated bushes are known as \"highbush blueberries\". The leaves can be either deciduous or evergreen, ovate to lanceolate, and 1–8 cm (0.39–3.15 in) long and 0.5–3.5 cm (0.20–1.38 in) broad. The flowers are bell-shaped, white, pale pink or red, sometimes tinged greenish. The fruit is a berry 5–16 millimeters (0.20–0.63 in) in diameter with a flared crown at the end; they are pale greenish at first, then reddish-purple, and finally dark purple when ripe. They are covered in a protective coating of powdery epicuticular wax, colloquially known as the \"bloom\". They have a sweet taste when mature, with variable acidity. Blueberry bushes typically bear fruit in the middle of the growing season: fruiting times are affected by local conditions such as altitude and latitude, so the peak of the crop, in the northern hemisphere, can vary from May to August.",
+        "inputSumary": "",
         "image": "images/blueberry.png",
+        "inputImage":"",
         "sectionData": [
-            { 
+            {
                 "name": "Uses",
-                "text": "A blueberry can be used to make stuff"
+                "inputName": "",
+                "text": "A blueberry can be used to make stuff",
+                "inputText": ""
             },
             {
                 "name": "characteristics",
-                "text": "soft, blue, and tasty"
+                "inputName": "",
+                "text": "soft, blue, and tasty",
+                "inputText": ""
             }
         ]
     },
@@ -19,7 +26,7 @@
         "summary": "Blueberries are perennial flowering plants with blue– or purple–colored berries. They are classified in the section Cyanococcus within the genus Vaccinium. Vaccinium also includes cranberries, bilberries, and huckleberries. Commercial \"blueberries\" – including both wild ('lowbush') and cultivated ('highbush') blueberries – are all native to North America. The highbush blueberry varieties were introduced into Europe during the 1930s. Blueberries are usually prostrate shrubs that can vary in size from 10 centimeters (3.9 in) to 4 meters (13 ft) in height. In commercial production of blueberries, the species with small, pea–size berries growing on low–level bushes are known as \"lowbush blueberries\" (synonymous with \"wild\"), while the species with larger berries growing on taller cultivated bushes are known as \"highbush blueberries\". The leaves can be either deciduous or evergreen, ovate to lanceolate, and 1–8 cm (0.39–3.15 in) long and 0.5–3.5 cm (0.20–1.38 in) broad. The flowers are bell-shaped, white, pale pink or red, sometimes tinged greenish. The fruit is a berry 5–16 millimeters (0.20–0.63 in) in diameter with a flared crown at the end; they are pale greenish at first, then reddish-purple, and finally dark purple when ripe. They are covered in a protective coating of powdery epicuticular wax, colloquially known as the \"bloom\". They have a sweet taste when mature, with variable acidity. Blueberry bushes typically bear fruit in the middle of the growing season: fruiting times are affected by local conditions such as altitude and latitude, so the peak of the crop, in the northern hemisphere, can vary from May to August.",
         "image": "images/C.png",
         "sectionData": [
-            { 
+            {
                 "name": "Uses",
                 "text": "A blueberry can be used to make stuff"
             },
