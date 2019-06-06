@@ -1,73 +1,14 @@
 //index.js
+if(document.URL.length <= 25){
+  function insertWikiPage(Title) {
+    var wikiContext = {
+      title: Title
+    }
+    var wikiHTML = Handlebars.templates.wiki(wikiContext);
+    var wikiContainer = document.querySelector('#nameOfPage');
 
-
-function insertWikiPage(Title) {
-  var wikiContext = {
-    title: Title,
-    summary: "", // can add
-    image: "",
-    sectionData: [],
-  };
-  var wikiHTML = Handlebars.templates.wiki(wikiContext);
-  var wikiContainer = document.querySelector('#name-of-page');
-
-  var wikiRecentContainer = document.querySelector('.recent-list');
-  var wikiTitleContainer = document.querySelector('#name-of-page');
-
-
-  wikiContainer.insertAdjacentHTML('beforeend', wikiHTML);
-  wikiTitleContainer.insertAdjacentHTML('beforeend', wikiHTML);
-}
-
-
-var create = document.getElementById('create-button');
-var accept = document.getElementById('accept-button');
-var cancel = document.getElementById('cancel-button');
-var scrollname = document.getElementById('new-scroll-name');
-var modal = document.getElementById('modal');
-var backdrop = document.getElementById('backdrop');
-
-//display modal
-create.addEventListener('click',function(event){
-  modal.classList.remove('hidden');
-  backdrop.classList.remove('hidden');
-});
-
-cancel.addEventListener('click',function(event){
-  modal.classList.add('hidden');
-  backdrop.classList.add('hidden');
-  scrollname.value = "";
-});
-
-accept.addEventListener('click',function(event){
-  modal.classList.add('hidden');
-  backdrop.classList.add('hidden');
-  scrollname.value = "";
-  //send signal to server to create a new empty scroll page
-  //redirect to 'edit' page for this scroll
-});
-
-
-//edit page code
-var editButton = document.getElementById('edit-page-button');
-var acceptButton = document.getElementById('accept-edit-button');
-var cancelButton = document.getElementById('cancel-edit-button');
-
-editButton.onclick = function(){
-  var inputNameBoxes = document.getElementsByClassName('new-section-name');
-  var nameBoxes = document.getElementsByClassName('section-name');
-  var inputTextBoxes = document.getElementsByClassName('new-section-text');
-  var textBoxes = document.getElementsByClassName('section-text');
-
-  var numberOfBoxes = inputNameBoxes.length;
-  var numberOfTexts = inputTextBoxes.length;
-
-  for(var i = 0; i < numberOfBoxes; i++){
-    inputNameBoxes[i].value = nameBoxes[i].innerHTML;
-  }
-
-    var wikiRecentContainer = document.querySelector('.recent-list');
-    var wikiTitleContainer = document.querySelector('#name-of-page');
+    var wikiRecentContainer = document.querySelector('.recentlist');
+    var wikiTitleContainer = document.querySelector('#nameOfPage');
 
 
     wikiContainer.insertAdjacentHTML('beforeend', wikiHTML);
@@ -78,7 +19,7 @@ editButton.onclick = function(){
   var create = document.getElementById('create-button');
   var accept = document.getElementById('accept-button');
   var cancel = document.getElementById('cancel-button');
-  var scrollname = document.getElementById('new-scroll-name');
+  var scrollname = document.getElementById('newscrollname');
   var modal = document.getElementById('modal');
   var backdrop = document.getElementById('backdrop');
 
@@ -103,7 +44,10 @@ editButton.onclick = function(){
     //redirect to 'edit' page for this scroll
   });
 
-//else{
+
+}
+else{
+
   //edit page code
   var editButton = document.getElementById('edit-page-button');
   var acceptButton = document.getElementById('accept-edit-button');
@@ -115,8 +59,19 @@ editButton.onclick = function(){
     var inputTextBoxes = document.getElementsByClassName('new-section-text');
     var textBoxes = document.getElementsByClassName('section-text');
 
+    var inputPageName = document.getElementById('new-page-title');
+    var pageName = document.getElementById('name-of-page');
+    var inputPageSummarry = document.getElementById('new-page-summary');
+    var pageSummary = document.getElementById('text-in-summary');
+    var inputImage = document.getElementById('new-page-image');
+    var image = document.getElementById('page-image');
+
     var numberOfBoxes = inputNameBoxes.length;
     var numberOfTexts = inputTextBoxes.length;
+
+    inputPageName.value = pageName.innerHTML;
+    inputPageSummarry.value = pageSummary.innerHTML;
+    inputImage.value = image.src;
 
     for(var i = 0; i < numberOfBoxes; i++){
       inputNameBoxes[i].value = nameBoxes[i].innerHTML;
@@ -134,7 +89,12 @@ editButton.onclick = function(){
       textBoxes[i].classList.add('hidden');
     }
 
-    console.log(acceptButton);
+    pageName.classList.add('hidden');
+    pageSummary.classList.add('hidden');
+
+    inputPageName.classList.remove('hidden');
+    inputPageSummarry.classList.remove('hidden');
+    inputImage.classList.remove('hidden');
 
     acceptButton.classList.remove('hidden');
     cancelButton.classList.remove('hidden');
@@ -148,8 +108,19 @@ editButton.onclick = function(){
     var inputTextBoxes = document.getElementsByClassName('new-section-text');
     var textBoxes = document.getElementsByClassName('section-text');
 
+    var inputPageName = document.getElementById('new-page-title');
+    var pageName = document.getElementById('name-of-page');
+    var inputPageSummarry = document.getElementById('new-page-summary');
+    var pageSummary = document.getElementById('text-in-summary');
+    var inputImage = document.getElementById('new-page-image');
+    var image = document.getElementById('page-image');
+
     var numberOfBoxes = inputNameBoxes.length;
     var numberOfTexts = inputTextBoxes.length;
+
+    pageName.innerHTML = inputPageName.value;
+    pageSummary.innerHTML = inputPageSummarry.value;
+    image.src =inputImage.value;
 
     for(var i = 0; i < inputNameBoxes.length; i++){
       nameBoxes[i].innerHTML = inputNameBoxes[i].value;
@@ -168,6 +139,13 @@ editButton.onclick = function(){
       textBoxes[i].classList.remove('hidden');
     }
 
+    pageName.classList.remove('hidden');
+    pageSummary.classList.remove('hidden');
+
+    inputPageName.classList.add('hidden');
+    inputPageSummarry.classList.add('hidden');
+    inputImage.classList.add('hidden');
+
     editButton.classList.remove('hidden');
     acceptButton.classList.add('hidden');
     cancelButton.classList.add('hidden');
@@ -178,6 +156,13 @@ editButton.onclick = function(){
     var nameBoxes = document.getElementsByClassName('section-name');
     var inputTextBoxes = document.getElementsByClassName('new-section-text');
     var textBoxes = document.getElementsByClassName('section-text');
+
+    var inputPageName = document.getElementById('new-page-title');
+    var pageName = document.getElementById('name-of-page');
+    var inputPageSummarry = document.getElementById('new-page-summary');
+    var pageSummary = document.getElementById('text-in-summary');
+    var inputImage = document.getElementById('new-page-image');
+    var image = document.getElementById('page-image');
 
     var numberOfBoxes = inputNameBoxes.length;
     var numberOfTexts = inputTextBoxes.length;
@@ -191,8 +176,15 @@ editButton.onclick = function(){
     }
 
 
+    pageName.classList.remove('hidden');
+    pageSummary.classList.remove('hidden');
+
+    inputPageName.classList.add('hidden');
+    inputPageSummarry.classList.add('hidden');
+    inputImage.classList.add('hidden');
+
     editButton.classList.remove('hidden');
     acceptButton.classList.add('hidden');
     cancelButton.classList.add('hidden');
   }
-//}
+}

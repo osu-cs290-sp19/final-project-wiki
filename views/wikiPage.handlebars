@@ -16,6 +16,25 @@ Title
     <main>
 
       <div>
+<<<<<<< HEAD
+        <h1 id ='name-of-page'>
+          {{title}}
+        </h1>
+        <input type='text' placeholder='' id ='new-page-title' class = 'hidden'>
+        <p id = 'text-in-summary'>
+          {{summary}}
+        </p>
+          <input type='text' placeholder= '' id ='new-page-summary' class =  'hidden'>
+      </div>
+
+      <div>
+        <img src="{{image}}" alt="Growing tomato" id = 'page-image'>
+          <input type='text' placeholder= '' id ='new-page-image' class =  'hidden'>
+      </div>
+
+
+      <div id = 'sections-container'>
+=======
         <h1 id='name-of-page'>
           {{title}}
         </h1>
@@ -33,6 +52,7 @@ Title
 
 
       <div id='sections-container'>
+>>>>>>> a1c3d64e81cb559d1c2cac75ff08c125ed082bfd
             {{#each sectionData}} <!-- input section name and section text -->
                 {{> section}}
             {{/each}}
