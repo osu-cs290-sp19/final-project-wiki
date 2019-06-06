@@ -77,7 +77,7 @@ app.post('/wiki/:title/addWiki',
             var titleToLower = req.params.title.toLowerCase(); // client sided json data
             console.log(titleToLower);
             if (titleToLower && !wikiDatabase[titleToLower]) {
-                
+
                 wikiDatabase.push({
                     titleToLower = {
                             'title': title,
@@ -91,7 +91,7 @@ app.post('/wiki/:title/addWiki',
             }
             else {
                 res.status(400).send("Wiki page must have a title or not exists!");
-        
+
             }
         }
     }

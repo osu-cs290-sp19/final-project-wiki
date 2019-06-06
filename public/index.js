@@ -2,177 +2,114 @@
 
 
 // first store data of the wiki on the client
-function getWikiIDFromURL() {
-  var path = window.location.pathname;
-  var pathParts = path.splite('/');
-  if (pathParks[1] == "wiki") {
-    return pathParts[2];
-  }
-  else {
-    return null;
-  }
-}
+
+if(document.URL.length <= 22){
+   function getWikiIDFromURL() {
+     var path = window.location.pathname;
+     var pathParts = path.splite('/');
+     if (pathParks[1] == "wiki") {
+       return pathParts[2];
+     }
+     else {
+       return null;
+     }
+   }
 
 
-function handleCreateWikiClick() {
-  // native JS XMLHttpRequest
+   function handleCreateWikiClick() {
+     // native JS XMLHttpRequest
 
-  var title = document.getElementById('modal');
-  if (!title) {
-    alert("you have to put a title!");
-  }
-  else 
-  {
-  var request = new XMLHttpRequest(); // create object
-  var requestURL = 'wiki/' + title + '/addWiki';
-  request.open('POST', requestURL); // make request
-  }
-  // create wiki object
+     var title = document.getElementById('modal');
+     if (!title) {
+       alert("you have to put a title!");
+     }
+     else
+     {
+     var request = new XMLHttpRequest(); // create object
+     var requestURL = 'wiki/' + title + '/addWiki';
+     request.open('POST', requestURL); // make request
+     }
+     // create wiki object
 
-  wikiObject = {
-    titleToLower = {
-        'title': title,
-        'summary': '',
-        'image': '',
-        'sectionData': []
-    }
-  }
-  
-  var requestBody = JSON.stringify(wikiObject);
-  console.log("== made wiki page", requestBody);
-
-  request.addEventListener('load', function (event) {
-    if (event.target.status === 200) {
-      var wikiTemplate = Handlebars.templates.wiki;
-      var newWikiHTML = wikiTemplate({
+     /*wikiObject = {
+        titleToLower = {
           'title': title,
           'summary': '',
           'image': '',
           'sectionData': []
-      });
-      // we don't need to insert any HTML in the DOM
+       }*/
+    // }
 
-    } else {
-      var message = event.target.response;
-      alert("Error storing wiki on server: " + message);
-    }
-  })
+     //var requestBody = JSON.stringify(wikiObject);
+     console.log("== made wiki page", requestBody);
 
-  request.setRequestHeader('Content-Type', 'application/json');
-  request.send(requestBody);
+     request.addEventListener('load', function (event) {
+       if (event.target.status === 200) {
+         var wikiTemplate = Handlebars.templates.wiki;
+         var newWikiHTML = wikiTemplate({
+             'title': title,
+             'summary': '',
+             'image': '',
+             'sectionData': []
+         });
+         // we don't need to insert any HTML in the DOM
 
-};
+       } else {
+         var message = event.target.response;
+         alert("Error storing wiki on server: " + message);
+       }
+     })
 
-function insertWikiPage(Title) {
-  var wikiContext = {
-    title: Title,
-    summary: "", // can add
-    image: "",
-    sectionData: [],
-  };
-  var wikiHTML = Handlebars.templates.wiki(wikiContext);
-  var wikiContainer = document.querySelector('#nameOfPage');
+     request.setRequestHeader('Content-Type', 'application/json');
+     request.send(requestBody);
 
-  var wikiRecentContainer = document.querySelector('.recentlist');
-  var wikiTitleContainer = document.querySelector('#nameOfPage');
+   };
 
+   function insertWikiPage(Title) {
+     var wikiContext = {
+       title: Title,
+       summary: "", // can add
+       image: "",
+       sectionData: [],
+     };
+     var wikiHTML = Handlebars.templates.wiki(wikiContext);
+     var wikiContainer = document.querySelector('#nameOfPage');
 
-  wikiContainer.insertAdjacentHTML('beforeend', wikiHTML);
-  wikiTitleContainer.insertAdjacentHTML('beforeend', wikiHTML);
-}
-
-
-var create = document.getElementById('createbutton');
-var accept = document.getElementById('acceptbutton');
-var cancel = document.getElementById('cancelbutton');
-var scrollname = document.getElementById('newscrollname');
-var modal = document.getElementById('modal');
-var backdrop = document.getElementById('backdrop');
-
-//display modal
-create.addEventListener('click',function(event){
-  modal.classList.remove('hidden');
-  backdrop.classList.remove('hidden');
-});
-
-cancel.addEventListener('click',function(event){
-  modal.classList.add('hidden');
-  backdrop.classList.add('hidden');
-  scrollname.value = "";
-});
-
-accept.addEventListener('click',function(event){
-  modal.classList.add('hidden');
-  backdrop.classList.add('hidden');
-  scrollname.value = "";
-  //send signal to server to create a new empty scroll page
-  //redirect to 'edit' page for this scroll
-});
+     var wikiRecentContainer = document.querySelector('.recentlist');
+     var wikiTitleContainer = document.querySelector('#nameOfPage');
 
 
-//edit page code
-var editButton = document.getElementById('edit-page-button');
-var acceptButton = document.getElementById('accept-edit-button');
-var cancelButton = document.getElementById('cancel-edit-button');
-
-editButton.onclick = function(){
-  var inputNameBoxes = document.getElementsByClassName('newSectionName');
-  var nameBoxes = document.getElementsByClassName('sectionName');
-  var inputTextBoxes = document.getElementsByClassName('newSectionText');
-  var textBoxes = document.getElementsByClassName('sectionText');
-
-  var numberOfBoxes = inputNameBoxes.length;
-  var numberOfTexts = inputTextBoxes.length;
-
-  for(var i = 0; i < numberOfBoxes; i++){
-    inputNameBoxes[i].value = nameBoxes[i].innerHTML;
-  }
-if(document.URL.length <= 25){
-  function insertWikiPage(Title) {
-    var wikiContext = {
-      title: Title
-    }
-    var wikiHTML = Handlebars.templates.wiki(wikiContext);
-    var wikiContainer = document.querySelector('#nameOfPage');
-
-    var wikiRecentContainer = document.querySelector('.recentlist');
-    var wikiTitleContainer = document.querySelector('#nameOfPage');
+     wikiContainer.insertAdjacentHTML('beforeend', wikiHTML);
+     wikiTitleContainer.insertAdjacentHTML('beforeend', wikiHTML);
+   }
 
 
-    wikiContainer.insertAdjacentHTML('beforeend', wikiHTML);
-    wikiTitleContainer.insertAdjacentHTML('beforeend', wikiHTML);
-  }
+   var create = document.getElementById('create-button');
+   var accept = document.getElementById('accept-button');
+   var cancel = document.getElementById('cancel-button');
+   var scrollname = document.getElementById('new-scroll-name');
+   var modal = document.getElementById('modal');
+   var backdrop = document.getElementById('backdrop');
 
+   //display modal
+   create.addEventListener('click',function(event){
+     modal.classList.remove('hidden');
+     backdrop.classList.remove('hidden');
+   });
 
-  var create = document.getElementById('create-button');
-  var accept = document.getElementById('accept-button');
-  var cancel = document.getElementById('cancel-button');
-  var scrollname = document.getElementById('newscrollname');
-  var modal = document.getElementById('modal');
-  var backdrop = document.getElementById('backdrop');
+   cancel.addEventListener('click',function(event){
+     modal.classList.add('hidden');
+     backdrop.classList.add('hidden');
+     scrollname.value = "";
+   });
 
-  //display modal
-  create.addEventListener('click',function(event){
-    modal.classList.remove('hidden');
-    backdrop.classList.remove('hidden');
-
-  });
-
-  cancel.addEventListener('click',function(event){
-    modal.classList.add('hidden');
-    backdrop.classList.add('hidden');
-    scrollname.value = "";
-  });
-
-  accept.addEventListener('click',function(event){
-    modal.classList.add('hidden');
-    backdrop.classList.add('hidden');
-    scrollname.value = "";
-    //send signal to server to create a new empty scroll page
-    //redirect to 'edit' page for this scroll
-  });
-
-
+   accept.addEventListener('click',function(event){
+     modal.classList.add('hidden');
+     backdrop.classList.add('hidden');
+     scrollname.value = "";
+     //send signal to server to create a new empty scroll page
+     //redirect to 'edit' page for this scroll
+   });
 }
 else{
 
