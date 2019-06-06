@@ -16,23 +16,23 @@ Title
     <main>
 
       <div>
-        <h1 id ='nameOfPage'>
+        <h1 id='name-of-page'>
           {{title}}
         </h1>
-        <input type='text' placeholder={{inputTitle}} id ='newPageTitle' class = 'hidden'>
-        <p id = 'textInSummary'>
+        <input type='text' placeholder={{inputTitle}} id='new-page-title' class='hidden'>
+        <p id='text-in-summary'>
           {{summary}}
         </p>
-          <input type='text' placeholder={{inputSummary}} id ='newPageSummary' class =  'hidden'>
+          <input type='text' placeholder={{inputSummary}} id='new-page-summary' class='hidden'>
       </div>
 
       <div>
         <img src="{{image}}" alt="Growing tomato">
-          <input type='text' placeholder={{inputImage}} id ='newPageImage' class =  'hidden'>
+          <input type='text' placeholder={{inputImage}} id='new-page-image' class='hidden'>
       </div>
 
 
-      <div id = 'sectionsContainer'>
+      <div id='sections-container'>
             {{#each sectionData}} <!-- input section name and section text -->
                 {{> section}}
             {{/each}}
@@ -41,5 +41,5 @@ Title
     </main>
 
     <button type="button" id="edit-page-button"><p>Edit</p></button>
-    <button type="button" id="accept-edit-button" class = 'hidden'><p>Accept</p></button>
-    <button type="button" id="cancel-edit-button" class = 'hidden'><p>Cancel</p></button>
+    <button type="button" id="accept-edit-button" class='hidden'><p>Accept</p></button>
+    <button type="button" id="cancel-edit-button" class='hidden'><p>Cancel</p></button>

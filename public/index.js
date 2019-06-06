@@ -9,10 +9,10 @@ function insertWikiPage(Title) {
     sectionData: [],
   };
   var wikiHTML = Handlebars.templates.wiki(wikiContext);
-  var wikiContainer = document.querySelector('#nameOfPage');
+  var wikiContainer = document.querySelector('#name-of-page');
 
-  var wikiRecentContainer = document.querySelector('.recentlist');
-  var wikiTitleContainer = document.querySelector('#nameOfPage');
+  var wikiRecentContainer = document.querySelector('.recent-list');
+  var wikiTitleContainer = document.querySelector('#name-of-page');
 
 
   wikiContainer.insertAdjacentHTML('beforeend', wikiHTML);
@@ -20,10 +20,10 @@ function insertWikiPage(Title) {
 }
 
 
-var create = document.getElementById('createbutton');
-var accept = document.getElementById('acceptbutton');
-var cancel = document.getElementById('cancelbutton');
-var scrollname = document.getElementById('newscrollname');
+var create = document.getElementById('create-button');
+var accept = document.getElementById('accept-button');
+var cancel = document.getElementById('cancel-button');
+var scrollname = document.getElementById('new-scroll-name');
 var modal = document.getElementById('modal');
 var backdrop = document.getElementById('backdrop');
 
@@ -54,10 +54,10 @@ var acceptButton = document.getElementById('accept-edit-button');
 var cancelButton = document.getElementById('cancel-edit-button');
 
 editButton.onclick = function(){
-  var inputNameBoxes = document.getElementsByClassName('newSectionName');
-  var nameBoxes = document.getElementsByClassName('sectionName');
-  var inputTextBoxes = document.getElementsByClassName('newSectionText');
-  var textBoxes = document.getElementsByClassName('sectionText');
+  var inputNameBoxes = document.getElementsByClassName('new-section-name');
+  var nameBoxes = document.getElementsByClassName('section-name');
+  var inputTextBoxes = document.getElementsByClassName('new-section-text');
+  var textBoxes = document.getElementsByClassName('section-text');
 
   var numberOfBoxes = inputNameBoxes.length;
   var numberOfTexts = inputTextBoxes.length;
@@ -66,8 +66,8 @@ editButton.onclick = function(){
     inputNameBoxes[i].value = nameBoxes[i].innerHTML;
   }
 
-    var wikiRecentContainer = document.querySelector('.recentlist');
-    var wikiTitleContainer = document.querySelector('#nameOfPage');
+    var wikiRecentContainer = document.querySelector('.recent-list');
+    var wikiTitleContainer = document.querySelector('#name-of-page');
 
 
     wikiContainer.insertAdjacentHTML('beforeend', wikiHTML);
@@ -78,7 +78,7 @@ editButton.onclick = function(){
   var create = document.getElementById('create-button');
   var accept = document.getElementById('accept-button');
   var cancel = document.getElementById('cancel-button');
-  var scrollname = document.getElementById('newscrollname');
+  var scrollname = document.getElementById('new-scroll-name');
   var modal = document.getElementById('modal');
   var backdrop = document.getElementById('backdrop');
 
@@ -86,7 +86,7 @@ editButton.onclick = function(){
   create.addEventListener('click',function(event){
     modal.classList.remove('hidden');
     backdrop.classList.remove('hidden');
-    
+
   });
 
   cancel.addEventListener('click',function(event){
@@ -102,7 +102,7 @@ editButton.onclick = function(){
     //send signal to server to create a new empty scroll page
     //redirect to 'edit' page for this scroll
   });
-  
+
 //else{
   //edit page code
   var editButton = document.getElementById('edit-page-button');
@@ -110,10 +110,10 @@ editButton.onclick = function(){
   var cancelButton = document.getElementById('cancel-edit-button');
 
   editButton.onclick = function(){
-    var inputNameBoxes = document.getElementsByClassName('newSectionName');
-    var nameBoxes = document.getElementsByClassName('sectionName');
-    var inputTextBoxes = document.getElementsByClassName('newSectionText');
-    var textBoxes = document.getElementsByClassName('sectionText');
+    var inputNameBoxes = document.getElementsByClassName('new-section-name');
+    var nameBoxes = document.getElementsByClassName('section-name');
+    var inputTextBoxes = document.getElementsByClassName('new-section-text');
+    var textBoxes = document.getElementsByClassName('section-text');
 
     var numberOfBoxes = inputNameBoxes.length;
     var numberOfTexts = inputTextBoxes.length;
@@ -143,10 +143,10 @@ editButton.onclick = function(){
   }
 
   acceptButton.onclick = function(){
-    var inputNameBoxes = document.getElementsByClassName('newSectionName');
-    var nameBoxes = document.getElementsByClassName('sectionName');
-    var inputTextBoxes = document.getElementsByClassName('newSectionText');
-    var textBoxes = document.getElementsByClassName('sectionText');
+    var inputNameBoxes = document.getElementsByClassName('new-section-name');
+    var nameBoxes = document.getElementsByClassName('section-name');
+    var inputTextBoxes = document.getElementsByClassName('new-section-text');
+    var textBoxes = document.getElementsByClassName('section-text');
 
     var numberOfBoxes = inputNameBoxes.length;
     var numberOfTexts = inputTextBoxes.length;
@@ -174,10 +174,10 @@ editButton.onclick = function(){
   }
 
   cancelButton.onclick = function(){
-    var inputNameBoxes = document.getElementsByClassName('newSectionName');
-    var nameBoxes = document.getElementsByClassName('sectionName');
-    var inputTextBoxes = document.getElementsByClassName('newSectionText');
-    var textBoxes = document.getElementsByClassName('sectionText');
+    var inputNameBoxes = document.getElementsByClassName('new-section-name');
+    var nameBoxes = document.getElementsByClassName('section-name');
+    var inputTextBoxes = document.getElementsByClassName('new-section-text');
+    var textBoxes = document.getElementsByClassName('section-text');
 
     var numberOfBoxes = inputNameBoxes.length;
     var numberOfTexts = inputTextBoxes.length;
