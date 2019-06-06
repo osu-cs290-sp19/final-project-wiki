@@ -11,7 +11,7 @@ if(document.URL === homePage){
    function getWikiIDFromURL() {
      var path = window.location.pathname;
      var pathParts = path.splite('/');
-     if (pathParks[1] == "wiki") {
+     if (pathParts[1] == "wiki") {
        return pathParts[2];
      }
      else {
