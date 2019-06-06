@@ -104,6 +104,9 @@ img {
 	font-weight: bold;
 	margin: auto;
 	width: 250px;
-	height: ;
 	padding: 15px;
+}
+
+#modal div {
+	margin: 8px;
 }
