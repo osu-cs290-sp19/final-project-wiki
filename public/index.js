@@ -1,5 +1,4 @@
 //index.js
-<<<<<<< HEAD
 
 
 // first store data of the wiki on the client
@@ -128,7 +127,6 @@ editButton.onclick = function(){
   for(var i = 0; i < numberOfBoxes; i++){
     inputNameBoxes[i].value = nameBoxes[i].innerHTML;
   }
-=======
 if(document.URL.length <= 25){
   function insertWikiPage(Title) {
     var wikiContext = {
@@ -136,7 +134,6 @@ if(document.URL.length <= 25){
     }
     var wikiHTML = Handlebars.templates.wiki(wikiContext);
     var wikiContainer = document.querySelector('#nameOfPage');
->>>>>>> 3091f49346698eb42a321f8b5ea9b5ab9424bbef
 
     var wikiRecentContainer = document.querySelector('.recentlist');
     var wikiTitleContainer = document.querySelector('#nameOfPage');
