@@ -2,43 +2,36 @@
 
     <main class='content'>
 		<button type='button' id='create-button'>Create a Scroll</button>
-
-        <h3>
-        	WELCOME TO THE QUILL
-        </h3>
-
-        <p class="">
-			The Quill is an open source and freely available wiki where anyone can
-			make pages of any kind they want!
-		</p>
-
-        <p class='featuredlist'>
+        <h3>WELCOME TO THE QUILL</h3>
+        <p>The Quill is an open source and freely available wiki where anyone can make pages of any kind they want!</p>
+        <p class='featured-list'>
             Featured Scrolls:
             <ul>
-                {{#each featuredData}}
-                    {{> featuredScrolls}}
-                {{/each}}
+               <li><a href='http://localhost:3400/wiki/blueberry'>Blueberry</a></li>
+               <li><a href='http://localhost:3400/wiki/cucumber'>Cucumber</a></li>
+               <li><a href='http://localhost:3400/wiki/tomato'>Tomato</a></li>
             </ul>
         </p>
-
-        <p class='recentlist'>
+        <p class='recent-list'>
             Recent Scrolls:
             <ul>
                 {{#each recentData}}
-                     {{> recentScrolls}}
+                    {{> recentScrolls}}
                 {{/each}}
             </ul>
         </p>
     </main>
 
     <div id='backdrop' class='hidden'>
-      <div id='modal' class='hidden'>
-          <h2>Create a Scroll</h2>
-          <h3>Scroll TItle:</h3>
-          <input type='text' placeholder='name...' id='newscrollname'>
-      <div id='modal-footer'>
-        <button type='button' id='cancel-button'>Cancel</button>
-        <button type='button' id='accept-button'>Accept</button>
-      </div>
-    </div>
-  </div>
+	  	<div id='modal' class='hidden'>
+	        Create a Scroll
+			<div class="modal-title">
+				Scroll Title:
+				<input type='text' placeholder='name...' id='new-scroll-name'>
+			</div>
+		  	<div id='modal-footer'>
+				<button type='button' id='cancel-button'>Cancel</button>
+				<button type='button' id='accept-button'>Accept</button>
+		  	</div>
+	    </div>
+  	</div>

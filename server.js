@@ -6,7 +6,7 @@ var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
 
 var app = express();
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3400;
 
 // static
 app.use(express.static('public'));
@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 // database
 var wikiDatabase = require('./wikiDatabase');
 
-/* 
+/*
 --- data format ---
 It needs to be a key format for URL access
 {

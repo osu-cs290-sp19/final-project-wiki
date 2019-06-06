@@ -1,10 +1,7 @@
-<!-- 
-
+<!--
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.runtime.js" charset="utf-8" defer></script>
     <script src="/wikiTemplate.js" charset="utf-8" defer></script>
     <script src="/index.js" charset="utf-8" defer></script>
-
-
 -->
 
 <!DOCTYPE html>
@@ -26,36 +23,22 @@
 <body>
     <nav class='navbar'>
     	<!-- ^^this^^ should be a fixed element, I propose color #50006d -->
-        <ul class='navlist'>
-			<li class='navitem'><a href=''><img class='quill' src='/quill.png' alt='logo' height='24px'></a></li>
-			<li class='navitem title'><a href=''>QUILL</a></li>
-            <li class='navitem'><a href=''>ONE</a></li>
-            <li class='navitem'><a href=''>TWO</a></li>
-            <li class='navitem'><a href=''>THREE</a></li>
-            <li class='navitem'><a href=''>FOUR</a></li>
-            <li class='navitem'><a href=''>FIVE</a></li>
-
-            <li class='searchbar'>
-	            <input type='text' placeholder='search...'>
-	            <button type='button' class='searchbutton'>?</button>
-            </li>
+        <ul class='nav-list'>
+			<li><a href=''><img class='logo' src='/quill.png' alt='quill.png' height='24px'>QUILL</a></li>
+            <li><a href='http://localhost:3400/wiki/blueberry'>BLUEBERRY</a></li>
+            <li><a href='http://localhost:3400/wiki/cucumber'>CUCUMBER</a></li>
+            <li><a href='http://localhost:3400/wiki/tomato'>TOMATO</a></li>
+	        <li>
+				<button class='search-button' type='button'>
+					<img src='/quill.png' alt='quill.png' height='14px'>
+				</button>
+			<li>
+			<li><input class='search-input' type='text' placeholder='search...'></li>
         </ul>
 
     </nav>
 
     {{{body}}}
-
-    <div id='backdrop' class='hidden'>
-	    <div id='modal' class='hidden'>
-	        <h2>Create a Scroll</h2>
-	        <h3>Scroll TItle:</h3>
-	        <input type='text' placeholder='name...' id='newscrollname'>
-			<div id='modal-footer'>
-				<button type='button' id='cancel-button'>Cancel</button>
-				<button type='button' id='accept-button'>Accept</button>
-			</div>
-		</div>
-	</div>
 
 </body>
 
