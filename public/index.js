@@ -2,7 +2,10 @@
 
 function insertWikiPage(Title) {
   var wikiContext = {
-    title: Title
+    title: Title,
+    summary: "", // can add
+    image: "",
+    sectionData: [],
   };
   var wikiHTML = Handlebars.templates.wiki(wikiContext);
   var wikiContainer = document.querySelector('#nameOfPage');

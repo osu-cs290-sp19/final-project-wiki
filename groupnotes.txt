@@ -25,4 +25,13 @@
         - Modal for adding page (creating a page)
         - adding search functionality to main page with js
 
-There are two dynamic UI's, the main page with all the wikis and the individual wiki page.
+There are two dynamic UI's, the main page with all the wikis and the individual wiki page.\
+
+
+5/5/2019
+
+    Notes
+        js buttons are bugged. Needs to be fixed (fixed)
+        generates an empty page for a url, check to see existing page.
+        direct to page (for editing)
+        dynamic for wiki edit button and wiki add. Wiki add will simply
