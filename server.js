@@ -3,6 +3,7 @@
 var path = require('path');
 var express = require('express');
 var exphbs = require('express-handlebars');
+var bodyParser = require('body-parser');
 
 var app = express();
 var port = process.env.PORT || 3400;
@@ -13,6 +14,9 @@ app.use(express.static('public'));
 //debugging: non-routing
 var logger = require('./logger');
 app.use(logger);
+
+// parser
+app.use(bodyParser.json());
 
 // database
 var wikiDatabase = require('./wikiDatabase');
@@ -62,6 +66,40 @@ app.get('/wiki/:title', function (req, res, next) {
         next();
     }
 })
+
+
+/*
+app.post('...', function (req, res, next) {...});
+*/
+app.post('/wiki/:title/addWiki',
+    function (req, res, next) {
+        if (req.body) {
+            var titleToLower = req.params.title.toLowerCase(); // client sided json data
+            console.log(titleToLower);
+            if (titleToLower && !wikiDatabase[titleToLower]) {
+                
+                wikiDatabase.push({
+                    titleToLower = {
+                            'title': title,
+                            'summary': '',
+                            'image': '',
+                            'sectionData': []
+                        }
+                });
+                res.status(200).send("wikipage successfully posted");
+                res.redirect('/wiki/:title'); // adding redirection when post is successfully');
+            }
+            else {
+                res.status(400).send("Wiki page must have a title or not exists!");
+        
+            }
+        }
+    }
+);
+
+
+
+
 
 /*
 app.post('/photos', function (req, res, next) {
