@@ -10,6 +10,11 @@ body {
 	margin: 0% 10%;
 }
 
+.navbar {
+	background-color: #5600b3;
+	padding: 10px;
+}
+
 h1,h2,h3 {
 	text-align: center;
 	margin-top: 0;
@@ -27,17 +32,34 @@ ul,a {
 	padding: 0;
 }
 
-.nav-list a {
+li {
 	display: inline;
+}
+
+.navbar a {
 	color: white;
+	position: relative;
+	bottom: 5px;
 }
 
-.quill {
+.search-input, .search-button {
+	font-family: 'Montserrat', sans-serif;
+	float: right;
+	margin-top: 5px;
+	border: none;
 }
 
-.navbar {
-	background-color: #5600b3;
-	padding: 10px;
+.search-button {
+	background: none;
+}
+
+.logo {
+	position: relative;
+	top: 6px;
+}
+
+a:not(.nav-list a):hover {
+	color: #5600b3;
 }
 
 #create-button {
