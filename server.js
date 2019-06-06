@@ -78,14 +78,12 @@ app.post('/wiki/:title/addWiki',
             console.log(titleToLower);
             if (titleToLower && !wikiDatabase[titleToLower]) {
                 
-                wikiDatabase.push({
-                    titleToLower = {
+                wikiDatabase[titleToLower].push({
                             'title': title,
                             'summary': '',
                             'image': '',
                             'sectionData': []
-                        }
-                });
+                        });
                 res.status(200).send("wikipage successfully posted");
                 res.redirect('/wiki/:title'); // adding redirection when post is successfully');
             }
