@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset='utf-8'>
+	<title>The Quill</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+	<link rel='stylesheet' href='style.css' media='screen'>
+	<script src='index.js' charset='utf-8' defer></script>
+</head>
+
+<body>
+    <nav class='navbar'>
+    	<!-- ^^this^^ should be a fixed element, I propose color #50006d -->
+        <ul class='navlist'>
+			<li class='navitem'><a href=''><img class='quill' src='quill.png' alt='logo' height='24px'></a></li>
+			<li class='navitem title'><a href=''>QUILL</a></li>
+            <li class='navitem'><a href=''>ONE</a></li>
+            <li class='navitem'><a href=''>TWO</a></li>
+            <li class='navitem'><a href=''>THREE</a></li>
+            <li class='navitem'><a href=''>FOUR</a></li>
+            <li class='navitem'><a href=''>FIVE</a></li>
+
+            <li class='searchbar'>
+	            <input type='text' placeholder='search...'>
+	            <button type='button' class='searchbutton'>?</button>
+            </li>
+        </ul>
+
+    </nav>
+
+    <main class='content'>
+		<button type='button' id='create-button'>Create a Scroll</button>
+
+        <h3>
+        	WELCOME TO THE QUILL
+        </h3>
+
+        <p class="">
+			The Quill is an open source and freely available wiki where anyone can
+			make pages of any kind they want!
+		</p>
+
+        <p class='featuredlist'>
+            Featured Scrolls:
+            <ul>
+                <li><a href=''>[page]</li></a>
+                <li><a href=''>[page]</li></a>
+                <li><a href=''>[page]</li></a>
+                <li><a href=''>[page]</li></a>
+                <li><a href=''>[page]</li></a>
+            </ul>
+        </p>
+
+        <p class='recentlist'>
+            Recent Scrolls:
+            <ul>
+                <li><a href=''>[page]</li></a>
+                <li><a href=''>[page]</li></a>
+                <li><a href=''>[page]</li></a>
+                <li><a href=''>[page]</li></a>
+                <li><a href=''>[page]</li></a>
+            </ul>
+        </p>
+    </main>
+
+    <div id='backdrop' class='hidden'>
+	    <div id='modal' class='hidden'>
+	        <h2>Create a Scroll</h2>
+	        <h3>Scroll TItle:</h3>
+	        <input type='text' placeholder='name...' id='newscrollname'>
+			<div id='modal-footer'>
+				<button type='button' id='cancel-button'>Cancel</button>
+				<button type='button' id='accept-button'>Accept</button>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>
