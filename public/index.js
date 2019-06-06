@@ -1,6 +1,68 @@
 //index.js
 
 
+// first store data of the wiki on the client
+function getWikiIDFromURL() {
+  var path = window.location.pathname;
+  var pathParts = path.splite('/');
+  if (pathParks[1] == "wiki") {
+    return pathParts[2];
+  }
+  else {
+    return null;
+  }
+}
+
+
+function handleCreateWikiClick() {
+  // native JS XMLHttpRequest
+
+  var title = document.getElementById('modal');
+  if (!title) {
+    alert("you have to put a title!");
+  }
+  else 
+  {
+  var request = new XMLHttpRequest(); // create object
+  var requestURL = 'wiki/' + title + '/addWiki';
+  request.open('POST', requestURL); // make request
+  }
+  // create wiki object
+
+  wikiObject = {
+    titleToLower = {
+        'title': title,
+        'summary': '',
+        'image': '',
+        'sectionData': []
+    }
+  }
+  
+  var requestBody = JSON.stringify(wikiObject);
+  console.log("== made wiki page", requestBody);
+
+  request.addEventListener('load', function (event) {
+    if (event.target.status === 200) {
+      var wikiTemplate = Handlebars.templates.wiki;
+      var newWikiHTML = wikiTemplate({
+          'title': title,
+          'summary': '',
+          'image': '',
+          'sectionData': []
+      });
+      // we don't need to insert any HTML in the DOM
+
+    } else {
+      var message = event.target.response;
+      alert("Error storing wiki on server: " + message);
+    }
+  })
+
+  request.setRequestHeader('Content-Type', 'application/json');
+  request.send(requestBody);
+
+};
+
 function insertWikiPage(Title) {
   var wikiContext = {
     title: Title,
@@ -86,7 +148,7 @@ editButton.onclick = function(){
   create.addEventListener('click',function(event){
     modal.classList.remove('hidden');
     backdrop.classList.remove('hidden');
-    
+
   });
 
   cancel.addEventListener('click',function(event){
