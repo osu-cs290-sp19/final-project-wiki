@@ -2,8 +2,12 @@
 
 
 // first store data of the wiki on the client
+var port = document.URL;
+port = port.slice(17,21);
+var homePage = "http://localhost:" + port + "/";
+console.log(homePage +  "    " + document.URL);
 
-if(document.URL.length <= 22){
+if(document.URL === homePage){
    function getWikiIDFromURL() {
      var path = window.location.pathname;
      var pathParts = path.splite('/');

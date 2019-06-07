@@ -1,26 +1,11 @@
 body {
 	font-family: 'Montserrat', sans-serif;
+	background-color: #e6e6ff;
 	margin: 0;
-	border:
-}
-
-.content {
-	margin: 0;
-	padding: 20px;
-	margin: 0% 10%;
-}
-
-.navbar {
-	background-color: #5600b3;
-	padding: 10px;
 }
 
 h1,h2,h3 {
 	text-align: center;
-	margin-top: 0;
-}
-
-p {
 	margin-top: 0;
 }
 
@@ -32,14 +17,42 @@ ul,a {
 	padding: 0;
 }
 
-li {
+p {
+	margin-top: 0;
+}
+
+a {
+	color: #5600b3;
+}
+
+img {
+	max-height: 180px;
+}
+
+.content {
+	padding: 20px;
+	margin: 0 10%;
+	background-color: white;
+}
+
+.navbar {
+	position: sticky;
+	top: 0;
+	padding: 10px;
+	background-color: #5600b3;
+	border-bottom: 2px #444 solid;
+}
+
+.navbar li {
 	display: inline;
+	padding-right: 20px;
 }
 
 .navbar a {
 	color: white;
 	position: relative;
 	bottom: 5px;
+	padding-right:
 }
 
 .search-input, .search-button {
@@ -49,8 +62,14 @@ li {
 	border: none;
 }
 
+.search-input {
+	border: 1px black solid;
+}
+
 .search-button {
 	background: none;
+	position: relative;
+	top: 2px;
 }
 
 .logo {
@@ -58,8 +77,8 @@ li {
 	top: 6px;
 }
 
-a:not(.nav-list a):hover {
-	color: #5600b3;
+.hidden {
+	display: none;
 }
 
 #create-button {
@@ -71,7 +90,7 @@ a:not(.nav-list a):hover {
 }
 
 #backdrop {
-	background-color: rgb(0,0,0,0.5);
+	background-color: rgb(0,0,0,0.8);
 	width: 100%;
 	height: 100%;
 	position: fixed;
@@ -82,14 +101,17 @@ a:not(.nav-list a):hover {
 }
 
 #modal {
+	position: relative;
 	background-color: white;
+	top: 25%;
+	border-radius: 5px;
+	border: 1px solid grey;
+	font-weight: bold;
 	margin: auto;
-	width: 300px;
+	width: 250px;
+	padding: 15px;
 }
 
-#accept-button, #cancel-button {
-}
-
-.hidden {
-	display: none;
+#modal div {
+	margin: 8px;
 }
