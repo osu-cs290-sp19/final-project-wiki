@@ -7,15 +7,15 @@
         <p class='featured-list'>
             Featured Scrolls:
             <ul>
-               <li><a href='http://localhost:3400/wiki/blueberry'>Blueberry</a></li>
-               <li><a href='http://localhost:3400/wiki/cucumber'>Cucumber</a></li>
-               <li><a href='http://localhost:3400/wiki/tomato'>Tomato</a></li>
+                {{#each wikiFeatured}}
+                    {{> featuredScrolls}}
+                {{/each}}
             </ul>
         </p>
         <p class='recent-list'>
             Recent Scrolls:
             <ul>
-                {{#each recentData}}
+                {{#each wikiRecent}}
                     {{> recentScrolls}}
                 {{/each}}
             </ul>

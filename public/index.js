@@ -15,11 +15,17 @@ if(document.URL.length <= 22){
      }
    }
 
+   function hideModal() {
+    modal.classList.add('hidden');
+    backdrop.classList.add('hidden');
+    scrollname.value = "";
+   };
 
    function handleCreateWikiClick() {
      // native JS XMLHttpRequest
-
-     var title = document.getElementById('modal');
+    console.log("create twit handler called");
+     var title = document.querySelector('#new-scroll-name').value;
+     console.log("== Title from doc:", title);
      if (!title) {
        alert("you have to put a title!");
      }
@@ -30,29 +36,40 @@ if(document.URL.length <= 22){
      request.open('POST', requestURL); // make request
      }
      // create wiki object
-
-     /*wikiObject = {
-        titleToLower = {
+     var requestObject = {
           'title': title,
+          // lower is not neccesary, but we may need it for later
           'summary': '',
           'image': '',
-          'sectionData': []
-       }*/
-    // }
+          'sectionData': [
+            {
+              'name': '',
+              'text': ''
+              }
+          ]
+     }
 
-     //var requestBody = JSON.stringify(wikiObject);
+     var requestBody = JSON.stringify(requestObject);
      console.log("== made wiki page", requestBody);
 
+     // below is for cleint sided changes using templates
      request.addEventListener('load', function (event) {
        if (event.target.status === 200) {
-         var wikiTemplate = Handlebars.templates.wiki;
-         var newWikiHTML = wikiTemplate({
-             'title': title,
-             'summary': '',
-             'image': '',
-             'sectionData': []
+          var urlTitle = title.toLowerCase().replace(/ /g,"_"); // client sided json data
+          var url = 'http://localhost:3400/wiki/' + urlTitle;
+          var recentTemplate = Handlebars.templates.recentScrolls;
+          var newRecentScrolls = recentTemplate({
+             'title': urlTitle,
+             'url': url
+
+            //  'summary': '',
+            //  'image': '',
+            //  'sectionData': []
          });
-         // we don't need to insert any HTML in the DOM
+         var recentScrollsContainer = document.querySelector('.recent-list');
+         recentScrollsContainer.insertAdjacentHTML('beforeend', newRecentScrolls);
+      
+         // We need to insert to recent DOM
 
        } else {
          var message = event.target.response;
@@ -60,29 +77,29 @@ if(document.URL.length <= 22){
        }
      })
 
-     request.setRequestHeader('Content-Type', 'application/json');
-     request.send(requestBody);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.send(requestBody);
+    hideModal();
+  };
 
-   };
+    // REDACTED: DO NOT USE
+  //  function insertWikiPage(Title) {
+  //    var wikiContext = {
+  //      title: Title,
+  //      summary: "", // can add
+  //      image: "",
+  //      sectionData: [],
+  //    };
+  //    var wikiHTML = Handlebars.templates.wiki(wikiContext);
+  //    var wikiContainer = document.querySelector('#nameOfPage');
 
-   function insertWikiPage(Title) {
-     var wikiContext = {
-       title: Title,
-       summary: "", // can add
-       image: "",
-       sectionData: [],
-     };
-     var wikiHTML = Handlebars.templates.wiki(wikiContext);
-     var wikiContainer = document.querySelector('#nameOfPage');
-
-     var wikiRecentContainer = document.querySelector('.recentlist');
-     var wikiTitleContainer = document.querySelector('#nameOfPage');
+  //    var wikiRecentContainer = document.querySelector('.recentlist');
+  //    var wikiTitleContainer = document.querySelector('#nameOfPage');
 
 
-     wikiContainer.insertAdjacentHTML('beforeend', wikiHTML);
-     wikiTitleContainer.insertAdjacentHTML('beforeend', wikiHTML);
-   }
-
+  //    wikiContainer.insertAdjacentHTML('beforeend', wikiHTML);
+  //    wikiTitleContainer.insertAdjacentHTML('beforeend', wikiHTML);
+  //  }
 
    var create = document.getElementById('create-button');
    var accept = document.getElementById('accept-button');
@@ -103,13 +120,7 @@ if(document.URL.length <= 22){
      scrollname.value = "";
    });
 
-   accept.addEventListener('click',function(event){
-     modal.classList.add('hidden');
-     backdrop.classList.add('hidden');
-     scrollname.value = "";
-     //send signal to server to create a new empty scroll page
-     //redirect to 'edit' page for this scroll
-   });
+   accept.addEventListener('click',handleCreateWikiClick);
 }
 else{
 
