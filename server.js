@@ -4,6 +4,15 @@ var path = require('path');
 var express = require('express');
 var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
+const fs = require("fs");
+
+var MongoClient = require('mongodb').MongoClient;
+
+var currentDate = new Date();
+var timestamp = currentDate.getTime();
+
+console.log(timestamp);
+
 //debugging: non-routing
 var logger = require('./logger');
 
@@ -12,6 +21,28 @@ var app = express();
 
 // port environment number
 var port = process.env.PORT || 3400;
+
+// mongo values
+var mongoHost = process.env.MONGO_HOST;
+var mongoPort = process.env.MONGO_PORT || 27017;
+var mongoUser = process.env.MONGO_USER;
+var mongoPassword = process.env.MONGO_PASSWORD;
+var mongoDBName = process.env.MONGO_DB_NAME;
+
+// mongo URL
+
+// var mongoURL =
+//     "mongodb://" + mongoUser + ":" + mongoPassword + 
+//     "@" + mongoHost + ":" + mongoPort + "/" + mongoDBName;
+
+    //console.log("== MONGO URL1:", mongoURL);
+
+var mongoURL = 	'mongodb://cs290_condreab:cs290_condreab@classmongo.engr.oregonstate.edu:27017/cs290_condreab';
+var db = null;
+
+//console.log("== MONGO URL2:", mongoURL);
+
+var mongoDBDatabase;
 
 // static
 app.use(express.static('public'));
@@ -40,8 +71,8 @@ It needs to be a key format for URL access
     }
 }
 
-
 */
+
 
 //engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
@@ -52,24 +83,59 @@ app.set('view engine', 'handlebars');
 app.get('/', function (req, res, next) {
     // insert code here
     // res.send("hello world!");
-    console.log("== wikiDatabase:", wikiDatabase)
-    res.status(200).render('homePage', wikiDatabase);
+    // console.log("== wikiDatabase:", wikiDatabase)
+    // res.status(200).render('homePage', wikiDatabase);
+
+    // now we use remote database
+    var collection = db.collection('wikiDatabase');
+    collection.find({}).sort({ timestamp: -1}).toArray(function(err, wikiDatabase) {
+        if (err) {
+            res.status(500).send({
+                error: "Error fetching wiki database from DB"
+            });
+        } else {
+            console.log("== wikidatabase:", wikiDatabase);
+            res.status(200).render('homePage', {wikiDatabase: wikiDatabase});
+        }
+    })
 });
 
 app.get('/test', function (req, res, next) {
     // insert code here
     // res.send("hello world!");
-    res.status(200).render('homePage', wikiDatabase);
+    //res.status(200).render('homePage', wikiDatabase);
+    var collection = db.collection('wikiDatabase');
+    collection.find({}).toArray(function(err, wikiDatabase) {
+        if (err) {
+            res.status(500).send({
+                error: "Error fetching wiki database from DB"
+            });
+        } else {
+            console.log("== wikidatabase:", wikiDatabase);
+            res.status(200).render('homePage', {wikiDatabase: wikiDatabase});
+        }
+    })
 });
 
 app.get('/wiki/:title', function (req, res, next) {
     var title = req.params.title.toLowerCase().replace(/ /g,"_");
-    if (wikiDatabase.wikiList[title]) {
-        res.status(200).render('wikiPage', wikiDatabase.wikiList[title]);
-    }
-    else {
-        next();
-    }
+    // if (wikiDatabase.wikiList[title]) {
+    //     res.status(200).render('wikiPage', wikiDatabase.wikiList[title]);
+    // }
+    // else {
+    //     next();
+    // }
+    var collection = db.collection("wikiDatabase");
+    collection.find({ 'id' : title }).toArray(function(err, wikiDatabase) {
+        if (err) {
+            res.status(500).send({
+                error: "Error fetching wiki database from DB"
+            });
+        } else {
+            console.log("== wikidatabase:", wikiDatabase[0]);
+            res.status(200).render('wikiPage', wikiDatabase[0]);
+        }
+    })
 })
 
 
@@ -83,43 +149,106 @@ function capitalize_Words(str)
 
 app.post('/wiki/:title/addWiki', // edit page
     function (req, res, next) {
-        console.log("== Post request body", req.body);
+        //console.log("== Post request body", req.body);
         if (req.body && req.body.title) { // title must be included
             var databaseTitle = req.params.title.toLowerCase().replace(/ /g,"_"); // client sided json data
             console.log("== database form:", databaseTitle);
             var wikiTitle = capitalize_Words(req.body.title);
             console.log("== wiki title form:", wikiTitle);
-            if (databaseTitle && !wikiDatabase.wikiList[databaseTitle]) {
-                console.log("== storing data on the server...")
-                wikiDatabase.wikiList[databaseTitle] = {
-                            'title': wikiTitle,
-                            'summary': '*Add summary here*',
-                            'image': '*Add image here*',
-                            'sectionData': [
-                                {
-                                'name': '*Add section name here',
-                                'text': '*add seciton text here'
-                                },
-                                {
-                                    'name': '*Add section name here',
-                                    'text': '*add seciton text here'
-                                }
-                            ]
+
+            var collection = db.collection('wikiDatabase');
+            // check if it exists already
+            // var found = collection.find({ 'id' : databaseTitle });
+            // console.log("== FOUND:",found);
+            // if (found) {
+            //     res.status(400).send("Wiki page is already in database!");
+            // } else {
+                    // create the wiki
+                var wiki = {
+                    id: databaseTitle,
+                    title: wikiTitle,
+                    summary: "*Add summary here*",
+                    image: "*Add summary here*",
+                    sectionData:[
+                        {
+                        'name': '*Add section name here',
+                        'text': '*add seciton text here'
+                        },
+                        {
+                            'name': '*Add section name here',
+                            'text': '*add seciton text here'
+                        }
+                    ],
+                    timestamp: currentDate.getTime(),
+                    url: "http://localhost:3400/wiki/" + databaseTitle,
+                    featured: false
                 };
-                wikiDatabase.wikiRecent.push({
-                    "title": wikiTitle,
-                    "url": "http://localhost:3400/wiki/" + databaseTitle
+                collection.insertOne(wiki,function (err, result) {
+                    if (err) {
+                        res.status(500).send({
+                        error: "Error inserting photo into DB"
+                        });
+                    } else {
+                        console.log("== added result:", result);
+                        //if (result.matchedCount > 0) {
+                        res.status(200).send("Success");
+                        //} else {
+                        //  next();
+                        //}
+                    }
                 });
-                console.log("wikipage data successfully stored:", wikiDatabase);
+            // } 
+        } else {
+            res.status(400).send("Wiki page must have a title and not exists!");
+        }  
+    }
+);
 
-                res.status(200).send("wikipage successfully posted");
-                //res.redirect('/wiki/' + databaseTitle); // adding redirection when post is successfully');
-            }
-            else {
-                res.status(400).send("Wiki page must have a title or not exists!");
+app.post('/wiki/:title/editWiki', // edit page
+    function (req, res, next) {
+        //console.log("== Post request body", req.body);
+        if (req.body && req.body.title) { // title must be included
+            var databaseTitle = req.params.title.toLowerCase().replace(/ /g,"_"); // client sided json data
+            console.log("== database form:", databaseTitle);
+            var wikiTitle = capitalize_Words(req.body.title);
+            console.log("== wiki title form:", wikiTitle);
 
-            }
-        }
+            var collection = db.collection('wikiDatabase');
+            // check if it exists already
+            // var found = collection.find({ 'id' : databaseTitle });
+            // console.log("== FOUND:",found);
+            // if (found) {
+            //     res.status(400).send("Wiki page is already in database!");
+            // } else {
+                    // create the wiki
+                var wiki = {
+                    id: databaseTitle,
+                    title: wikiTitle,
+                    summary: req.body.summary,
+                    image: req.body.image,
+                    sectionData: req.body.sectionData,
+                    timestamp: currentDate.getTime(),
+                    url: "http://localhost:3400/wiki/" + databaseTitle,
+                    featured: false
+                };
+                collection.updateMany({id: databaseTitle}, wiki, function (err, result) {
+                    if (err) {
+                        res.status(500).send({
+                        error: "Error updating wiki in DB"
+                        });
+                    } else {
+                        console.log("== added result:", result);
+                        //if (result.matchedCount > 0) {
+                        res.status(200).send("Success");
+                        //} else {
+                        //  next();
+                        //}
+                    }
+                });
+            // } 
+        } else {
+            res.status(400).send("Wiki page must have a title and not exists!");
+        }  
     }
 );
 
@@ -145,13 +274,16 @@ app.delete('/photos', function (req, res, next) {
 app.get("*", function (req, res, next) {
     res.status(404).render('404Page');
   });
-
-  app.listen(port, function (err) {
+  
+  MongoClient.connect(mongoURL, function (err, client) {
     if (err) {
       throw err;
     }
-    console.log("== Server listening on port", port);
-});
+    db = client.db(mongoDBName);
+    app.listen(3400, function () {
+      console.log("== Server listening on port 3400");
+    });
+  });
 
 
 // app.listen(port, function () {

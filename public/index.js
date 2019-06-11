@@ -8,6 +8,11 @@ var homePage = "http://localhost:" + port + "/";
 console.log(homePage +  "    " + document.URL);
 
 if(document.URL === homePage){
+
+  function capitalize_Words(str) {
+  return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  }
+
    function getWikiIDFromURL() {
      var path = window.location.pathname;
      var pathParts = path.splite('/');
@@ -43,14 +48,14 @@ if(document.URL === homePage){
      var requestObject = {
           'title': title,
           // lower is not neccesary, but we may need it for later
-          'summary': '',
-          'image': '',
-          'sectionData': [
-            {
-              'name': '',
-              'text': ''
-              }
-          ]
+          // 'summary': '',
+          // 'image': '',
+          // 'sectionData': [
+          //   {
+          //     'name': '',
+          //     'text': ''
+          //     }
+          // ]
      }
 
      var requestBody = JSON.stringify(requestObject);
@@ -61,9 +66,10 @@ if(document.URL === homePage){
        if (event.target.status === 200) {
           var urlTitle = title.toLowerCase().replace(/ /g,"_"); // client sided json data
           var url = 'http://localhost:3400/wiki/' + urlTitle;
+          var formattedTitle = capitalize_Words(title);
           var recentTemplate = Handlebars.templates.recentScrolls;
           var newRecentScrolls = recentTemplate({
-             'title': urlTitle,
+             'title': formattedTitle,
              'url': url
 
             //  'summary': '',
