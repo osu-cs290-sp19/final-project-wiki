@@ -138,6 +138,10 @@ app.get('/wiki/:title', function (req, res, next) {
     })
 })
 
+app.get('/search/:query', function(req, res, next){
+  //currently does nothing...
+  console.log('got a search request of query:' + req.params.query);
+});
 
 /*
 app.post('...', function (req, res, next) {...});
