@@ -7,6 +7,20 @@ port = port.slice(17,21);
 var homePage = "http://localhost:" + port + "/";
 console.log(homePage +  "    " + document.URL);
 
+var query = document.getElementsByClassName('search-input')[0];
+var search = document.getElementsByClassName('search-button')[0];
+search.addEventListener('click',function(event){
+  var request = new XMLHttpRequest();
+  var requestURL = '/search/' + query.value;
+  console.log('query.value', query.value);
+  request.open('GET', requestURL);
+  var requestBody = query.value;
+  // request.setRequestHeader('Content-type', 'stringvalue');
+  // request.addEventListener('load', function(event){});
+  request.send(requestBody);
+  console.log('sent search request');
+});
+
 if(document.URL === homePage){
    function getWikiIDFromURL() {
      var path = window.location.pathname;
@@ -72,7 +86,7 @@ if(document.URL === homePage){
          });
          var recentScrollsContainer = document.querySelector('.recent-list');
          recentScrollsContainer.insertAdjacentHTML('beforeend', newRecentScrolls);
-      
+
          // We need to insert to recent DOM
 
        } else {
