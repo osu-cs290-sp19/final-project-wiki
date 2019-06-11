@@ -1,4 +1,5 @@
 //index.js
+var currentDate = new Date();
 
 
 // first store data of the wiki on the client
@@ -31,7 +32,7 @@ if(document.URL === homePage){
      var path = window.location.pathname;
      var pathParts = path.splite('/');
      if (pathParts[1] == "wiki") {
-       return pathParts[2];
+       return pathParts[2].toLowerCase().replace(/ /g,"_");;
      }
      else {
        return null;
@@ -46,7 +47,7 @@ if(document.URL === homePage){
 
    function handleCreateWikiClick() {
      // native JS XMLHttpRequest
-    console.log("create twit handler called");
+    console.log("create wiki handler called");
      var title = document.querySelector('#new-scroll-name').value;
      console.log("== Title from doc:", title);
      if (!title) {
@@ -84,8 +85,9 @@ if(document.URL === homePage){
           var recentTemplate = Handlebars.templates.recentScrolls;
           var newRecentScrolls = recentTemplate({
              'title': formattedTitle,
-             'url': url
-
+             'url': url,
+             'timestamp': timestamp, // update the time stamp of the wiki when edited
+             'sectionData': []
             //  'summary': '',
             //  'image': '',
             //  'sectionData': []
@@ -105,6 +107,74 @@ if(document.URL === homePage){
     request.send(requestBody);
     hideModal();
   };
+
+  // new handler
+  function handleEditWikiClick() {
+    // native JS XMLHttpRequest
+   console.log("Edit wiki handler called");
+   // get the current URL id for the database
+    var id = getWikiIDFromURL();
+    console.log("== id from URL:", id);
+    if (!id) {
+      alert("There's a bug with the url parsing");
+    }
+    else
+    {
+    var request = new XMLHttpRequest(); // create object
+    var requestURL = 'wiki/' + title + '/editWiki'; // edit Wiki request
+    request.open('POST', requestURL); // make request
+    }
+
+    // MUST BE ADDED A LIST OF CONTAINER VALUES
+    // ex. summary = 
+
+    // create wiki object
+    var requestObject = {
+         'title': title,
+         'summary': summary,
+         'image': image,
+         'sectionData': sectionData
+        
+    }
+
+    var requestBody = JSON.stringify(requestObject);
+    console.log("== made wiki page", requestBody);
+
+    // below is for cleint sided changes using templates
+    request.addEventListener('load', function (event) {
+      if (event.target.status === 200) {
+         var urlTitle = title.toLowerCase().replace(/ /g,"_"); // client sided json data
+         var url = 'http://localhost:3400/wiki/' + urlTitle;
+         var formattedTitle = capitalize_Words(title);
+         var editTemplate = Handlebars.templates.wiki;
+         var newRecentScrolls = editTemplate({
+          'title': title,
+          'summary': summary,
+          'image': image,
+          'sectionData': sectionData
+        });
+
+        var wikiTitle = document.querySelector('#name-of-page');
+        var wikiSummary = document.querySelector('#text-in-summary');
+        var wikiImage = document.querySelector('#page-image');
+        var wikiSections = document.querySelector('#sections-container');;
+        
+        // how to replace values in the DOM ¯\_(ツ)_/¯
+
+        // add changes to the DOM
+        //wikiTitle.value = 
+        // We need to insert to recent DOM
+
+      } else {
+        var message = event.target.response;
+        alert("Error storing wiki on server: " + message);
+      }
+    })
+
+   request.setRequestHeader('Content-Type', 'application/json');
+   request.send(requestBody);
+   hideModal();
+ };
 
     // REDACTED: DO NOT USE
   //  function insertWikiPage(Title) {
