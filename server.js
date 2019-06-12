@@ -212,11 +212,12 @@ app.post('/wiki/:title/editWiki', // edit page
     function (req, res, next) {
         //console.log("== Post request body", req.body);
         if (req.body && req.body.title) { // title must be included
-            var databaseTitle = req.params.title.toLowerCase().replace(/ /g,"_"); // client sided json data
-            console.log("== database form:", databaseTitle);
+            var databaseTitle = req.body.title.toLowerCase().replace(/ /g,"_"); // client sided json data
+            console.log("== new database form:", databaseTitle);
             var wikiTitle = capitalize_Words(req.body.title);
-            console.log("== wiki title form:", wikiTitle);
+            console.log("== new wiki title form:", wikiTitle);
 
+            console.log("== ")
             var collection = db.collection('wikiDatabase');
             // create the wiki
             var wiki = {
@@ -224,13 +225,12 @@ app.post('/wiki/:title/editWiki', // edit page
                 title: wikiTitle,
                 summary: req.body.summary,
                 image: req.body.image,
-                sectionData: req.body.sectionData,
                 timestamp: currentDate.getTime(),
                 url: "http://localhost:3400/wiki/" + databaseTitle,
                 featured: false
             };
             
-            collection.updateMany({id: databaseTitle}, wiki, function (err, result) {
+            collection.updateOne({id: req.params.title}, {$set: wiki}, function (err, result) {
                 if (err) {
                     res.status(500).send({
                     error: "Error updating wiki in DB"
@@ -256,8 +256,6 @@ app.post('/wiki/:title/addSection', // edit page
         if (req.body && req.body.name && req.body.text) { // title must be included
             var databaseTitle = req.params.title.toLowerCase().replace(/ /g,"_"); // client sided json data
             console.log("== database form:", databaseTitle);
-            var wikiTitle = capitalize_Words(req.body.title);
-            console.log("== wiki title form:", wikiTitle);
 
             var collection = db.collection('wikiDatabase');
             var section = {
