@@ -64,6 +64,7 @@ img {
 
 .search-input {
 	border: 1px black solid;
+	border-radius: 2px;
 }
 
 .search-button {
@@ -81,7 +82,7 @@ img {
 	display: none;
 }
 
-#create-button {
+#create-button,#edit-page-button,#add-section-button,#accept-edit-button,#cancel-edit-button {
 	margin: 10px;
 	padding: 5px;
 	float: right;
