@@ -1,4 +1,7 @@
 //index.js
+
+// search: "TODO" for things to be done
+
 var currentDate = new Date();
 
 
@@ -60,17 +63,8 @@ if(document.URL === homePage){
      request.open('POST', requestURL); // make request
      }
      // create wiki object
-     var requestObject = {
-          'title': title,
-          // lower is not neccesary, but we may need it for later
-          // 'summary': '',
-          // 'image': '',
-          // 'sectionData': [
-          //   {
-          //     'name': '',
-          //     'text': ''
-          //     }
-          // ]
+     var requestObject = { // our create wiki only takes in a title
+          'title': title
      }
 
      var requestBody = JSON.stringify(requestObject);
@@ -85,12 +79,7 @@ if(document.URL === homePage){
           var recentTemplate = Handlebars.templates.recentScrolls;
           var newRecentScrolls = recentTemplate({
              'title': formattedTitle,
-             'url': url,
-             'timestamp': timestamp, // update the time stamp of the wiki when edited
-             'sectionData': []
-            //  'summary': '',
-            //  'image': '',
-            //  'sectionData': []
+             'url': url
          });
          var recentScrollsContainer = document.querySelector('.recent-list');
          recentScrollsContainer.insertAdjacentHTML('beforeend', newRecentScrolls);
@@ -110,6 +99,7 @@ if(document.URL === homePage){
 
   // new handler
   function handleEditWikiClick() {
+    
     // native JS XMLHttpRequest
    console.log("Edit wiki handler called");
    // get the current URL id for the database
@@ -121,20 +111,21 @@ if(document.URL === homePage){
     else
     {
     var request = new XMLHttpRequest(); // create object
-    var requestURL = 'wiki/' + title + '/editWiki'; // edit Wiki request
+    var requestURL = 'wiki/' + id + '/editWiki'; // edit Wiki request
     request.open('POST', requestURL); // make request
     }
 
-    // MUST BE ADDED A LIST OF CONTAINER VALUES
-    // ex. summary = 
+    // TODO: PULL VALUES FROM THE DOM: title, summary, image, sectionData
 
+    var urlTitle = title.toLowerCase().replace(/ /g,"_"); // client sided json data
+    var url = 'http://localhost:3400/wiki/' + urlTitle;
     // create wiki object
     var requestObject = {
          'title': title,
          'summary': summary,
          'image': image,
-         'sectionData': sectionData
-        
+         'sectionData': sectionData,
+         'url': url
     }
 
     var requestBody = JSON.stringify(requestObject);
@@ -143,27 +134,8 @@ if(document.URL === homePage){
     // below is for cleint sided changes using templates
     request.addEventListener('load', function (event) {
       if (event.target.status === 200) {
-         var urlTitle = title.toLowerCase().replace(/ /g,"_"); // client sided json data
-         var url = 'http://localhost:3400/wiki/' + urlTitle;
-         var formattedTitle = capitalize_Words(title);
-         var editTemplate = Handlebars.templates.wiki;
-         var newRecentScrolls = editTemplate({
-          'title': title,
-          'summary': summary,
-          'image': image,
-          'sectionData': sectionData
-        });
 
-        var wikiTitle = document.querySelector('#name-of-page');
-        var wikiSummary = document.querySelector('#text-in-summary');
-        var wikiImage = document.querySelector('#page-image');
-        var wikiSections = document.querySelector('#sections-container');;
-        
-        // how to replace values in the DOM ¯\_(ツ)_/¯
-
-        // add changes to the DOM
-        //wikiTitle.value = 
-        // We need to insert to recent DOM
+         // TODO: REPLACE VALUES IN THE DOM: title, summary, image, sectionData
 
       } else {
         var message = event.target.response;
@@ -176,24 +148,52 @@ if(document.URL === homePage){
    hideModal();
  };
 
-    // REDACTED: DO NOT USE
-  //  function insertWikiPage(Title) {
-  //    var wikiContext = {
-  //      title: Title,
-  //      summary: "", // can add
-  //      image: "",
-  //      sectionData: [],
-  //    };
-  //    var wikiHTML = Handlebars.templates.wiki(wikiContext);
-  //    var wikiContainer = document.querySelector('#nameOfPage');
+ function handleAddSectionClick() {
+  // native JS XMLHttpRequest
+  console.log("Add section handler called");
+   // get the current URL id for the database
+   var id = getWikiIDFromURL();
+   console.log("== id from URL:", id);
+   if (!id) {
+     alert("There's a bug with the url parsing");
+   }
+   else
+   {
+   var request = new XMLHttpRequest(); // create object
+   var requestURL = 'wiki/' + id + '/addSection'; // edit Wiki request
+   request.open('POST', requestURL); // make request
+   }
 
-  //    var wikiRecentContainer = document.querySelector('.recentlist');
-  //    var wikiTitleContainer = document.querySelector('#nameOfPage');
+  // create wiki object
+  var requestObject = { // our create wiki only takes in a title
+       'name': '*Add name for section here',
+       'text': '*add text for section here'
+  }
 
+  var requestBody = JSON.stringify(requestObject);
+  console.log("== made wiki page", requestBody);
 
-  //    wikiContainer.insertAdjacentHTML('beforeend', wikiHTML);
-  //    wikiTitleContainer.insertAdjacentHTML('beforeend', wikiHTML);
-  //  }
+  // below is for cleint sided changes using templates
+  request.addEventListener('load', function (event) {
+    if (event.target.status === 200) {
+       var sectionTemplate = Handlebars.templates.section;
+       var newSection = sectionTemplate({
+          'name': '*Add name for section here',
+          'text': '*add text for section here'
+      });
+      var sectionContainer = document.querySelector('#sections-containe');
+      sectionContainer.insertAdjacentHTML('beforeend', newSection);
+
+    } else {
+      var message = event.target.response;
+      alert("Error storing wiki on server: " + message);
+    }
+  })
+
+ request.setRequestHeader('Content-Type', 'application/json');
+ request.send(requestBody);
+ hideModal();
+};
 
    var create = document.getElementById('create-button');
    var accept = document.getElementById('accept-button');

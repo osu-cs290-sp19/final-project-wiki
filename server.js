@@ -33,16 +33,14 @@ console.log(mongoHost, mongoPort, mongoUser, mongoPassword, mongoDBName);
 
 // mongo URL
 
-// var mongoURL =
-//     "mongodb://" + mongoUser + ":" + mongoPassword + 
-//     "@" + mongoHost + ":" + mongoPort + "/" + mongoDBName;
+// mongoURL = 'mongodb://${mongoUser}:${mongoPassword}@${mongoHost}:${mongoPort}/${mongoDBName}';
 
-    //console.log("== MONGO URL1:", mongoURL);
+//     console.log("== MONGO URL1:", mongoURL);
 
 var mongoURL = 	'mongodb://cs290_condreab:cs290_condreab@classmongo.engr.oregonstate.edu:27017/cs290_condreab';
 var db = null;
 
-//console.log("== MONGO URL2:", mongoURL);
+// console.log("== MONGO URL2:", mongoURL);
 
 var mongoDBDatabase;
 
@@ -173,8 +171,8 @@ app.post('/wiki/:title/addWiki', // edit page
                     image: "*Add summary here*",
                     sectionData:[
                         {
-                        'name': '*Add section name here',
-                        'text': '*add seciton text here'
+                            'name': '*Add section name here',
+                            'text': '*add seciton text here'
                         },
                         {
                             'name': '*Add section name here',
@@ -220,37 +218,67 @@ app.post('/wiki/:title/editWiki', // edit page
             console.log("== wiki title form:", wikiTitle);
 
             var collection = db.collection('wikiDatabase');
-            // check if it exists already
-            // var found = collection.find({ 'id' : databaseTitle });
-            // console.log("== FOUND:",found);
-            // if (found) {
-            //     res.status(400).send("Wiki page is already in database!");
-            // } else {
-                    // create the wiki
-                var wiki = {
-                    id: databaseTitle,
-                    title: wikiTitle,
-                    summary: req.body.summary,
-                    image: req.body.image,
-                    sectionData: req.body.sectionData,
-                    timestamp: currentDate.getTime(),
-                    url: "http://localhost:3400/wiki/" + databaseTitle,
-                    featured: false
-                };
-                collection.updateMany({id: databaseTitle}, wiki, function (err, result) {
-                    if (err) {
-                        res.status(500).send({
-                        error: "Error updating wiki in DB"
-                        });
-                    } else {
-                        console.log("== added result:", result);
-                        //if (result.matchedCount > 0) {
-                        res.status(200).send("Success");
-                        //} else {
-                        //  next();
-                        //}
-                    }
-                });
+            // create the wiki
+            var wiki = {
+                id: databaseTitle,
+                title: wikiTitle,
+                summary: req.body.summary,
+                image: req.body.image,
+                sectionData: req.body.sectionData,
+                timestamp: currentDate.getTime(),
+                url: "http://localhost:3400/wiki/" + databaseTitle,
+                featured: false
+            };
+            
+            collection.updateMany({id: databaseTitle}, wiki, function (err, result) {
+                if (err) {
+                    res.status(500).send({
+                    error: "Error updating wiki in DB"
+                    });
+                } else {
+                    console.log("== added result:", result);
+                    //if (result.matchedCount > 0) {
+                    res.status(200).send("Success");
+                    //} else {
+                    //  next();
+                    //}
+                }
+            });
+        } else {
+            res.status(400).send("Wiki page must have a title and not exists!");
+        }  
+    }
+);
+
+app.post('/wiki/:title/addSection', // edit page
+    function (req, res, next) {
+        //console.log("== Post request body", req.body);
+        if (req.body && req.body.name && req.body.text) { // title must be included
+            var databaseTitle = req.params.title.toLowerCase().replace(/ /g,"_"); // client sided json data
+            console.log("== database form:", databaseTitle);
+            var wikiTitle = capitalize_Words(req.body.title);
+            console.log("== wiki title form:", wikiTitle);
+
+            var collection = db.collection('wikiDatabase');
+            var section = {
+                name: req.body.name,
+                text: req.body.text
+            };
+
+            collection.updateOne({id: databaseTitle}, { $push: {sectionData: section}}, function (err, result) {
+                if (err) {
+                    res.status(500).send({
+                    error: "Error adding section in DB"
+                    });
+                } else {
+                    console.log("== added result:", result);
+                    //if (result.matchedCount > 0) {
+                    res.status(200).send("Success");
+                    //} else {
+                    //  next();
+                    //}
+                }
+            });
             // } 
         } else {
             res.status(400).send("Wiki page must have a title and not exists!");
