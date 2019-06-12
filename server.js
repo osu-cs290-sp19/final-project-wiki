@@ -34,7 +34,7 @@ console.log(mongoHost, mongoPort, mongoUser, mongoPassword, mongoDBName);
 // mongo URL
 
 // var mongoURL =
-//     "mongodb://" + mongoUser + ":" + mongoPassword + 
+//     "mongodb://" + mongoUser + ":" + mongoPassword +
 //     "@" + mongoHost + ":" + mongoPort + "/" + mongoDBName;
 
     //console.log("== MONGO URL1:", mongoURL);
@@ -138,8 +138,21 @@ app.get('/wiki/:title', function (req, res, next) {
 })
 
 app.get('/search/:query', function(req, res, next){
-  //currently does nothing...
-  console.log('got a search request of query:' + req.params.query);
+	var collection = db.collection('wikiDatabase');
+	collection.createIndex( {title : "text"} );
+	collection.find( {$text: {$search: req.params.query} } ).toArray(function(err, searchResults) {
+			if (err) {
+					res.status(500).send({
+							error: "Error fetching wiki database from DB"
+					});
+					console.log("Error fetching wiki database from DB");
+			} else {
+					console.log("== searchResults:", searchResults);
+					res.status(200).send("Successful Search");
+			}
+	})
+	console.log('== got a search request of query:' + req.params.query);
+	collection.dropIndexes();
 });
 
 /*
@@ -206,7 +219,7 @@ app.post('/wiki/:title/addWiki', // edit page
             });
         } else {
             res.status(400).send("Wiki page must have a title and not exists!");
-        }  
+        }
     }
 );
 
@@ -251,10 +264,10 @@ app.post('/wiki/:title/editWiki', // edit page
                         //}
                     }
                 });
-            // } 
+            // }
         } else {
             res.status(400).send("Wiki page must have a title and not exists!");
-        }  
+        }
     }
 );
 
@@ -280,7 +293,7 @@ app.delete('/photos', function (req, res, next) {
 app.get("*", function (req, res, next) {
     res.status(404).render('404Page');
   });
-  
+
   MongoClient.connect(mongoURL, function (err, client) {
     if (err) {
       throw err;

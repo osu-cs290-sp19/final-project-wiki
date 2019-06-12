@@ -13,11 +13,13 @@ var search = document.getElementsByClassName('search-button')[0];
 search.addEventListener('click',function(event){
   var request = new XMLHttpRequest();
   var requestURL = '/search/' + query.value;
-  console.log('query.value', query.value);
   request.open('GET', requestURL);
+	console.log('query.value', query.value);
+
   var requestBody = query.value;
   // request.setRequestHeader('Content-type', 'stringvalue');
   // request.addEventListener('load', function(event){});
+
   request.send(requestBody);
   console.log('sent search request');
 });
@@ -126,7 +128,7 @@ if(document.URL === homePage){
     }
 
     // MUST BE ADDED A LIST OF CONTAINER VALUES
-    // ex. summary = 
+    // ex. summary =
 
     // create wiki object
     var requestObject = {
@@ -134,7 +136,7 @@ if(document.URL === homePage){
          'summary': summary,
          'image': image,
          'sectionData': sectionData
-        
+
     }
 
     var requestBody = JSON.stringify(requestObject);
@@ -158,11 +160,11 @@ if(document.URL === homePage){
         var wikiSummary = document.querySelector('#text-in-summary');
         var wikiImage = document.querySelector('#page-image');
         var wikiSections = document.querySelector('#sections-container');;
-        
+
         // how to replace values in the DOM ¯\_(ツ)_/¯
 
         // add changes to the DOM
-        //wikiTitle.value = 
+        //wikiTitle.value =
         // We need to insert to recent DOM
 
       } else {
