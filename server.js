@@ -128,6 +128,9 @@ app.get('/wiki/:title', function (req, res, next) {
             res.status(500).send({
                 error: "Error fetching wiki database from DB"
             });
+        }
+        else if (wikiDatabase.length < 1) {
+            next();
         } else {
             console.log("== wikidatabase:", wikiDatabase[0]);
             res.status(200).render('wikiPage', wikiDatabase[0]);
