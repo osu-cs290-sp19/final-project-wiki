@@ -439,7 +439,7 @@ cancelButton.onclick = function(){
 }
 
 addButton.onclick = function(){
-   alert("Did add section but in the function");
+   //alert("Did add section but in the function");
    ///This is where you add another section to the list of sections for the specific pages
    handleAddSectionClick();
 }
