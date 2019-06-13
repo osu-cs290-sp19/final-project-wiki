@@ -66,14 +66,15 @@ if(document.URL === homePage){
        if (event.target.status === 200) {
           var urlTitle = title.toLowerCase().replace(/ /g,"_"); // client sided json data
           var url = 'http://localhost:3400/wiki/' + urlTitle;
-          var formattedTitle = capitalize_Words(title);
-          var recentTemplate = Handlebars.templates.recentScrolls;
-          var newRecentScrolls = recentTemplate({
-             'title': formattedTitle,
-             'url': url
-         });
-         var recentScrollsContainer = document.querySelector('.recent-list');
-         recentScrollsContainer.insertAdjacentHTML('beforeend', newRecentScrolls);
+        window.location = url;
+          //   var formattedTitle = capitalize_Words(title);
+        //   var recentTemplate = Handlebars.templates.recentScrolls;
+        //   var newRecentScrolls = recentTemplate({
+        //      'title': formattedTitle,
+        //      'url': url
+        //  });
+        //  var recentScrollsContainer = document.querySelector('.recent-list');
+        //  recentScrollsContainer.insertAdjacentHTML('beforeend', newRecentScrolls);
 
          // We need to insert to recent DOM
 
