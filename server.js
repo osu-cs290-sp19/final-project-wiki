@@ -243,7 +243,7 @@ app.post('/wiki/:title/editWiki', // edit page
                 url: "http://localhost:3400/wiki/" + databaseTitle,
                 featured: false
             };
-            
+
             collection.updateOne({id: req.params.title}, {$set: wiki}, function (err, result) {
                 if (err) {
                     res.status(500).send({
@@ -260,7 +260,7 @@ app.post('/wiki/:title/editWiki', // edit page
             });
         } else {
             res.status(400).send("Wiki page must have a title and not exists!");
-        }  
+        }
     }
 );
 
@@ -291,7 +291,7 @@ app.post('/wiki/:title/addSection', // edit page
                     //}
                 }
             });
-            // } 
+            // }
         } else {
             res.status(400).send("Wiki page must have a title and not exists!");
         }
