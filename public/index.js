@@ -124,10 +124,10 @@ else{
   // new handler
 
   function hideEditModal() {
-    var inputNameBoxes = document.getElementsByClassName('new-section-name');
+    var inputNameBoxes = document.getElementsByClassName('section-name-input');
     var nameBoxes = document.getElementsByClassName('section-name');
-    var inputTextBoxes = document.getElementsByClassName('new-section-text');
-    var textBoxes = document.getElementsByClassName('section-text');
+    var inputTextBoxes = document.getElementsByClassName('section-content-input');
+    var textBoxes = document.getElementsByClassName('section-content');
 
     var inputPageName = document.getElementById('new-page-title');
     var pageName = document.getElementById('name-of-page');
@@ -312,10 +312,10 @@ else{
   var addButton = document.getElementById('add-section-button');
 
   editButton.onclick = function(){
-    var inputNameBoxes = document.getElementsByClassName('new-section-name');
+    var inputNameBoxes = document.getElementsByClassName('section-name-input');
     var nameBoxes = document.getElementsByClassName('section-name');
-    var inputTextBoxes = document.getElementsByClassName('new-section-text');
-    var textBoxes = document.getElementsByClassName('section-text');
+    var inputTextBoxes = document.getElementsByClassName('section-content-input');
+    var textBoxes = document.getElementsByClassName('section-content');
 
     var inputPageName = document.getElementById('new-page-title');
     var pageName = document.getElementById('name-of-page');
@@ -416,10 +416,10 @@ else{
 // }
 
 cancelButton.onclick = function(){
-  var inputNameBoxes = document.getElementsByClassName('new-section-name');
-  var nameBoxes = document.getElementsByClassName('section-name');
-  var inputTextBoxes = document.getElementsByClassName('new-section-text');
-  var textBoxes = document.getElementsByClassName('section-text');
+   var inputNameBoxes = document.getElementsByClassName('section-name-input');
+   var nameBoxes = document.getElementsByClassName('section-name');
+   var inputTextBoxes = document.getElementsByClassName('section-content-input');
+   var textBoxes = document.getElementsByClassName('section-content');
 
   var inputPageName = document.getElementById('new-page-title');
   var pageName = document.getElementById('name-of-page');
