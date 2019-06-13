@@ -259,10 +259,10 @@ else{
    }
 
   // create wiki object
-  var requestObject = { // our create wiki only takes in a title
-       'name': '*Add name for section here',
-       'text': '*add text for section here'
-  }
+  var requestObject = {
+    'name': '*Add section name here',
+    'text': '*add seciton text here'
+}
 
   var requestBody = JSON.stringify(requestObject);
   console.log("== made wiki page", requestBody);
@@ -272,9 +272,9 @@ else{
     if (event.target.status === 200) {
        var sectionTemplate = Handlebars.templates.section;
        var newSection = sectionTemplate({
-          'name': '*Add name for section here',
-          'text': '*add text for section here'
-      });
+        'name': '*Add section name here',
+        'text': '*add seciton text here'
+    });
       var sectionContainer = document.querySelector('#sections-container');
       sectionContainer.insertAdjacentHTML('beforeend', newSection);
 
