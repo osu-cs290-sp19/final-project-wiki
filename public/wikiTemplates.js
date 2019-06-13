@@ -22,7 +22,6 @@ templates['section'] = template({"compiler":[7,">= 4.0.0"],"main":function(conta
     + alias4(((helper = (helper = helpers.text || (depth0 != null ? depth0.text : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"text","hash":{},"data":data}) : helper)))
     + "</p>\r\n    <input class ='section-content-input hidden' type='text' placeholder=''>\r\n</div>\r\n";
 },"useData":true});
-<<<<<<< HEAD
 templates['wiki'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1;
 
@@ -54,6 +53,4 @@ templates['featuredScrolls'] = template({"1":function(container,depth0,helpers,p
 
   return ((stack1 = helpers["if"].call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.featured : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"useData":true});
-=======
->>>>>>> 28a4eca3415ec51825277213f06134635c745131
 })();

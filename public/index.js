@@ -180,10 +180,6 @@ else{
     request.open('POST', requestURL); // make request
     }
 
-<<<<<<< HEAD
-    // MUST BE ADDED A LIST OF CONTAINER VALUES
-    // ex. summary =
-=======
     // TODO: PULL VALUES FROM THE DOM: title, summary, image, sectionData
     var title = document.getElementById('new-page-title').value;
     var summary = document.getElementById('new-page-summary').value;
@@ -192,7 +188,6 @@ else{
     //var sectionTexts = document.getElementsByClassName('new-section-text').value;
 
     console.log(title, summary, image);
->>>>>>> 28a4eca3415ec51825277213f06134635c745131
 
     var urlTitle = title.toLowerCase().replace(/ /g,"_"); // client sided json data
     var url = 'http://localhost:3400/wiki/' + urlTitle;
@@ -201,12 +196,7 @@ else{
          'title': title,
          'summary': summary,
          'image': image,
-<<<<<<< HEAD
-         'sectionData': sectionData
-
-=======
          'url': url
->>>>>>> 28a4eca3415ec51825277213f06134635c745131
     }
 
     var requestBody = JSON.stringify(requestObject);
@@ -215,29 +205,6 @@ else{
     // below is for cleint sided changes using templates
     request.addEventListener('load', function (event) {
       if (event.target.status === 200) {
-<<<<<<< HEAD
-         var urlTitle = title.toLowerCase().replace(/ /g,"_"); // client sided json data
-         var url = 'http://localhost:3400/wiki/' + urlTitle;
-         var formattedTitle = capitalize_Words(title);
-         var editTemplate = Handlebars.templates.wiki;
-         var newRecentScrolls = editTemplate({
-          'title': title,
-          'summary': summary,
-          'image': image,
-          'sectionData': sectionData
-        });
-
-        var wikiTitle = document.querySelector('#name-of-page');
-        var wikiSummary = document.querySelector('#text-in-summary');
-        var wikiImage = document.querySelector('#page-image');
-        var wikiSections = document.querySelector('#sections-container');;
-
-        // how to replace values in the DOM ¯\_(ツ)_/¯
-
-        // add changes to the DOM
-        //wikiTitle.value =
-        // We need to insert to recent DOM
-=======
 
          // TODO: REPLACE VALUES IN THE DOM: title, summary, image
          var pageName = document.getElementById('name-of-page');
@@ -246,7 +213,6 @@ else{
          pageName.innerHTML = title;
          pageSummary.innerHTML = summary;
          image.innerHTML = image;
->>>>>>> 28a4eca3415ec51825277213f06134635c745131
 
       } else {
         var message = event.target.response;

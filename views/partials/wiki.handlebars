@@ -1,0 +1,18 @@
+<main class='content'>
+
+<div class='wiki-header'>
+<h1 id='nameOfPage'>{{title}}</h1>
+<p id='textInSummary'>{{summary}}</p>
+
+<img src="{{image}}" alt="Image not found">
+</div>
+
+<div id = 'sectionsContainer'>
+{{#each sectionData}} <!-- input section name and section text -->
+{{> section}}
+{{/each}}
+</div>
+
+</main>
+
+<button type="button" id="edit-page-button"><p>Edit</p></button>
