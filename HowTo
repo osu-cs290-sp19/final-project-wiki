@@ -3,6 +3,7 @@ run: "npm start" to start the server
 
 to pre-build: "npm run build"
 
+below is for server debugging/resetting
 mongoimport --host classmongo.engr.oregonstate.edu ^
   --username cs290_condreab                 ^
   --db cs290_condreab                        ^
