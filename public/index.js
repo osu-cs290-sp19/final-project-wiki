@@ -219,7 +219,7 @@ else{
          var pageSummary = document.getElementById('text-in-summary');
          var image = document.getElementById('page-image');
          var sectionNames = document.getElementsByClassName('section-name');
-         var sectionTexts = document.getElementsByClassName('section-content-input');
+         var sectionTexts = document.getElementsByClassName('section-content');
 
          pageName.innerHTML = title;
          pageSummary.innerHTML = summary;
